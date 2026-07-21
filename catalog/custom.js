@@ -2,14 +2,11 @@
   "use strict";
 
   const icons = {
-    back: "‹",
-    forward: "›",
     previous: "⏮",
     play: "▶",
     pause: "❚❚",
     next: "⏭",
     library: "♫",
-    albums: "▦",
     search: "⌕",
     volume: "◕"
   };
@@ -32,7 +29,17 @@
   let toastTimer = 0;
 
   const pathFor = slug => new URL(slug ? `${slug}/` : "./", siteRoot).href;
+  const assetFor = name => new URL(name, siteRoot).href;
   const pathKey = url => normalizePath(new URL(url, window.location.href).pathname).toLowerCase();
+
+  function createMascotLayer() {
+    const standee = document.createElement("img");
+    standee.className = "mizu-mascot-standee";
+    standee.src = assetFor("mio-standee.png");
+    standee.alt = "";
+    standee.setAttribute("aria-hidden", "true");
+    document.body.appendChild(standee);
+  }
 
   function createSidebar() {
     const aside = document.createElement("aside");
@@ -40,21 +47,17 @@
     aside.setAttribute("aria-label", "资料库导航");
     aside.innerHTML = `
       <a class="mizu-brand" href="${siteRoot.href}">
-        <span class="mizu-brand-mark">${icons.library}</span>
-        <span>Music Mizu</span>
+        <img class="mizu-brand-avatar" src="${assetFor("mio-avatar.png")}" alt="">
+        <span><strong>Music Mizu</strong><small>澪音的潮汐档案</small></span>
       </a>
-      <div class="mizu-nav mizu-nav-primary">
-        <a href="${siteRoot.href}" data-nav="home"><span class="mizu-nav-icon">${icons.library}</span><span>现在就听</span></a>
-        <a href="${siteRoot.href}#albums" data-nav="albums"><span class="mizu-nav-icon">${icons.albums}</span><span>浏览专辑</span></a>
-      </div>
-      <div class="mizu-nav-label">资料库</div>
+      <div class="mizu-nav-label">音乐库</div>
       <nav class="mizu-nav mizu-nav-library">
+        <a href="${siteRoot.href}" data-nav="home"><span class="mizu-nav-icon">${icons.library}</span><span>全部专辑</span></a>
         <a href="${pathFor("projectmili")}"><span class="mizu-nav-icon">●</span><span>ProjectMili</span></a>
         <a href="${pathFor("kusanagi-nene-wonderlands-showtime")}"><span class="mizu-nav-icon">●</span><span>草薙宁宁</span></a>
         <a href="${pathFor("noteblock")}"><span class="mizu-nav-icon">●</span><span>Noteblock</span></a>
       </nav>
       <div class="mizu-sidebar-spacer"></div>
-      <div class="mizu-library-summary">3 张专辑 · 39 首歌曲<br>无广告 · 无追踪 · 直接播放</div>
     `;
     document.body.insertBefore(aside, document.body.firstChild);
   }
@@ -65,11 +68,6 @@
 
     header.innerHTML = `
       <div class="mizu-toolbar">
-        <div class="mizu-history">
-          <button type="button" data-history="back" aria-label="后退">${icons.back}</button>
-          <button type="button" data-history="forward" aria-label="前进">${icons.forward}</button>
-          <div class="mizu-context"><strong>Music Mizu</strong><span>资料库</span></div>
-        </div>
         <div class="mizu-player-shell">
           <div class="mizu-transport">
             <button type="button" data-player="previous" aria-label="上一首" disabled>${icons.previous}</button>
@@ -292,12 +290,6 @@
     document.body.classList.toggle("mizu-home", isHome);
     document.body.classList.toggle("mizu-release", tracks.length > 0);
 
-    const contextTitle = document.querySelector(".mizu-context strong");
-    const contextSubtitle = document.querySelector(".mizu-context span");
-    const pageTitle = document.querySelector("#content h1")?.textContent.trim() || "Music Mizu";
-    if (contextTitle) contextTitle.textContent = pageTitle;
-    if (contextSubtitle) contextSubtitle.textContent = tracks.length ? `${tracks.length} 首歌曲` : "资料库";
-
     if (isHome) {
       const grid = document.querySelector("#content .page_grid > div");
       if (grid && !grid.querySelector(".mizu-section-heading")) {
@@ -317,6 +309,26 @@
         meta.textContent = albumArtists[slug] || "Music Mizu";
         release.appendChild(meta);
       });
+
+      const intro = document.querySelector("#content .page_more");
+      if (intro && !intro.querySelector(".mizu-mascot-gallery")) {
+        intro.querySelector("h1")?.remove();
+        const gallery = document.createElement("section");
+        gallery.className = "mizu-mascot-gallery";
+        gallery.setAttribute("aria-labelledby", "mizu-mascot-gallery-title");
+        gallery.innerHTML = `
+          <div class="mizu-gallery-heading">
+            <div><span>潮汐日志</span><h3 id="mizu-mascot-gallery-title">澪音的三个片段</h3></div>
+            <a href="${assetFor("mio-character-sheet.png")}" target="_blank" rel="noopener">查看完整设定图 ↗</a>
+          </div>
+          <div class="mizu-gallery-grid">
+            <figure><img src="${assetFor("mio-illustration-archive.png")}" alt="澪音在潮汐档案室整理音乐记忆" loading="lazy"><figcaption><strong>潮汐档案</strong><span>把旋律收进不会蒸发的水层。</span></figcaption></figure>
+            <figure><img src="${assetFor("mio-illustration-stage.png")}" alt="澪音用水波为舞台调音" loading="lazy"><figcaption><strong>舞台调音</strong><span>让每一道水波落在正确的拍点。</span></figcaption></figure>
+            <figure><img src="${assetFor("mio-illustration-echo.png")}" alt="澪音读取水球中的数字回声" loading="lazy"><figcaption><strong>数字回声</strong><span>红色节点连接散落的听歌记忆。</span></figcaption></figure>
+          </div>
+        `;
+        intro.appendChild(gallery);
+      }
     }
 
     if (tracks.length) {
@@ -447,12 +459,6 @@
         return;
       }
 
-      const historyButton = target.closest?.("[data-history]");
-      if (historyButton) {
-        historyButton.dataset.history === "back" ? window.history.back() : window.history.forward();
-        return;
-      }
-
       const copyButton = target.closest?.("[data-copy]");
       if (copyButton) {
         event.preventDefault();
@@ -497,6 +503,7 @@
     }
   }
 
+  createMascotLayer();
   createSidebar();
   createToolbar();
   bindEvents();

@@ -1,12 +1,13 @@
 :root {
   color-scheme: dark;
-  --mizu-accent: #fa2d48;
-  --mizu-accent-hover: #ff4961;
-  --mizu-bg: #1c1c1e;
-  --mizu-panel: #242426;
-  --mizu-panel-strong: #2c2c2e;
-  --mizu-sidebar: rgba(26, 26, 28, 0.94);
-  --mizu-toolbar: rgba(42, 42, 44, 0.88);
+  --mizu-accent: #68dce7;
+  --mizu-accent-hover: #8be8ef;
+  --mizu-signal: #ff6d74;
+  --mizu-bg: #07111f;
+  --mizu-panel: #101d2c;
+  --mizu-panel-strong: #172638;
+  --mizu-sidebar: rgba(7, 17, 31, 0.93);
+  --mizu-toolbar: rgba(11, 25, 42, 0.9);
   --mizu-line: rgba(255, 255, 255, 0.095);
   --mizu-line-strong: rgba(255, 255, 255, 0.16);
   --mizu-text: #f5f5f7;
@@ -39,7 +40,8 @@ body {
 
 body::before {
   background:
-    radial-gradient(circle at 62% -12%, rgba(250, 45, 72, 0.09), transparent 34rem),
+    radial-gradient(circle at 62% -12%, rgba(104, 220, 231, 0.13), transparent 34rem),
+    radial-gradient(circle at 90% 36%, rgba(255, 109, 116, 0.055), transparent 24rem),
     linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 18rem);
   content: "";
   inset: 0;
@@ -49,7 +51,7 @@ body::before {
 }
 
 ::selection {
-  background: rgba(250, 45, 72, 0.38);
+  background: rgba(104, 220, 231, 0.35);
   color: #fff;
 }
 
@@ -122,17 +124,32 @@ input:focus-visible {
   padding: 4px 10px 18px;
 }
 
-.mizu-brand-mark {
-  align-items: center;
-  background: linear-gradient(150deg, #ff5c74, #e51e3c);
-  border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(250, 45, 72, 0.28);
-  color: #fff;
-  display: inline-flex;
-  font-size: 17px;
-  height: 30px;
-  justify-content: center;
-  width: 30px;
+.mizu-brand-avatar {
+  border: 1px solid rgba(104, 220, 231, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(31, 190, 207, 0.2);
+  height: 34px;
+  object-fit: cover;
+  width: 34px;
+}
+
+.mizu-brand > span {
+  min-width: 0;
+}
+
+.mizu-brand strong,
+.mizu-brand small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mizu-brand small {
+  color: var(--mizu-secondary);
+  font-size: 9px;
+  font-weight: 500;
+  margin-top: 2px;
 }
 
 .mizu-nav-label {
@@ -192,21 +209,26 @@ input:focus-visible {
   flex: 1;
 }
 
-.mizu-library-summary {
-  border-top: 1px solid var(--mizu-line);
-  color: var(--mizu-tertiary);
-  font-size: 11px;
-  line-height: 1.55;
-  margin: 12px 8px 0;
-  padding: 12px 2px 0;
-}
-
 .layout {
   margin-left: var(--mizu-sidebar-width) !important;
   max-width: none !important;
   min-height: 100vh;
   padding-top: var(--mizu-toolbar-height);
   width: calc(100% - var(--mizu-sidebar-width)) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.mizu-mascot-standee {
+  bottom: -4vh;
+  height: min(78vh, 900px);
+  object-fit: contain;
+  opacity: 0.16;
+  pointer-events: none;
+  position: fixed;
+  right: -2.5vw;
+  user-select: none;
+  z-index: 0;
 }
 
 .layout > header {
@@ -227,61 +249,9 @@ input:focus-visible {
   align-items: center;
   display: grid;
   gap: 16px;
-  grid-template-columns: minmax(150px, 0.55fr) minmax(360px, 1.5fr) minmax(210px, 0.7fr);
+  grid-template-columns: minmax(420px, 1fr) minmax(230px, 0.48fr);
   height: 100%;
   padding: 8px 18px;
-}
-
-.mizu-history {
-  align-items: center;
-  display: flex;
-  gap: 5px;
-  min-width: 0;
-}
-
-.mizu-history button,
-.mizu-icon-button {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 50%;
-  color: var(--mizu-secondary);
-  cursor: pointer;
-  display: inline-flex;
-  height: 32px;
-  justify-content: center;
-  padding: 0;
-  width: 32px;
-}
-
-.mizu-history button:hover,
-.mizu-icon-button:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
-}
-
-.mizu-context {
-  min-width: 0;
-  padding-left: 5px;
-}
-
-.mizu-context strong,
-.mizu-context span {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mizu-context strong {
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.mizu-context span {
-  color: var(--mizu-tertiary);
-  font-size: 10px;
-  margin-top: 2px;
 }
 
 .mizu-player-shell {
@@ -461,7 +431,7 @@ input:focus-visible {
 
 .mizu-search:focus-within {
   background: rgba(255, 255, 255, 0.105);
-  border-color: rgba(250, 45, 72, 0.7);
+  border-color: rgba(104, 220, 231, 0.72);
 }
 
 .mizu-search input {
@@ -663,6 +633,7 @@ body.mizu-home #content > .page:first-child .actions {
 .mizu-section-heading {
   align-items: baseline;
   display: flex;
+  grid-column: 1 / -1;
   justify-content: space-between;
   margin: 0 0 13px;
 }
@@ -693,8 +664,10 @@ body.mizu-home .page_grid > .mizu-section-heading {
   display: flex !important;
   flex-direction: column;
   margin: 0 !important;
+  max-width: 100%;
   min-width: 0;
   position: relative;
+  width: 100% !important;
 }
 
 .release > a:first-child {
@@ -703,31 +676,6 @@ body.mizu-home .page_grid > .mizu-section-heading {
   margin-bottom: 9px;
   overflow: hidden;
   position: relative;
-}
-
-.release > a:first-child::after {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.38);
-  border-radius: 50%;
-  bottom: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  color: #fff;
-  content: "▶";
-  display: flex;
-  font-size: 13px;
-  height: 34px;
-  justify-content: center;
-  opacity: 0;
-  position: absolute;
-  right: 10px;
-  transform: translateY(5px);
-  transition: opacity 150ms ease, transform 150ms ease;
-  width: 34px;
-}
-
-.release:hover > a:first-child::after {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .release img {
@@ -769,7 +717,7 @@ body.mizu-home .page_grid > .mizu-section-heading {
 body.mizu-release #content > .page:first-child {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
-    radial-gradient(circle at 11% 18%, rgba(250, 45, 72, 0.12), transparent 28rem);
+    radial-gradient(circle at 11% 18%, rgba(104, 220, 231, 0.12), transparent 28rem);
   border-bottom: 1px solid var(--mizu-line);
   padding-bottom: 24px !important;
 }
@@ -869,7 +817,7 @@ dialog#overlay img {
 }
 
 .track.mizu-current {
-  background: rgba(250, 45, 72, 0.09) !important;
+  background: rgba(104, 220, 231, 0.09) !important;
 }
 
 .track.mizu-current .title,
@@ -1003,6 +951,85 @@ dialog#overlay img {
   color: var(--mizu-accent);
 }
 
+.mizu-mascot-gallery {
+  border-top: 1px solid var(--mizu-line);
+  margin-top: 22px;
+  padding-top: 20px;
+}
+
+.mizu-gallery-heading {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.mizu-gallery-heading span {
+  color: var(--mizu-signal);
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+}
+
+.mizu-gallery-heading h3 {
+  color: #fff;
+  font-size: 19px;
+  margin: 0;
+}
+
+.mizu-gallery-heading a {
+  border: 1px solid var(--mizu-line-strong);
+  border-radius: 999px;
+  color: var(--mizu-text);
+  font-size: 11px;
+  padding: 6px 10px;
+}
+
+.mizu-gallery-heading a:hover {
+  border-color: rgba(104, 220, 231, 0.5);
+  color: var(--mizu-accent);
+}
+
+.mizu-gallery-grid {
+  display: grid;
+  gap: clamp(12px, 1.7vw, 20px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mizu-gallery-grid figure {
+  background: rgba(16, 29, 44, 0.78);
+  border: 1px solid var(--mizu-line);
+  border-radius: 12px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.mizu-gallery-grid img {
+  aspect-ratio: 3 / 2;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.mizu-gallery-grid figcaption {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px 12px;
+}
+
+.mizu-gallery-grid strong {
+  color: var(--mizu-text);
+  font-size: 12px;
+}
+
+.mizu-gallery-grid span {
+  color: var(--mizu-secondary);
+  font-size: 10px;
+}
+
 .scroll_target {
   scroll-margin-top: calc(var(--mizu-toolbar-height) + 15px);
 }
@@ -1030,12 +1057,16 @@ footer a:hover {
   }
 
   .mizu-toolbar {
-    grid-template-columns: 120px minmax(330px, 1fr) 170px;
+    grid-template-columns: minmax(340px, 1fr) 170px;
   }
 
-  .mizu-context,
   .mizu-volume {
     display: none;
+  }
+
+  .mizu-mascot-standee {
+    opacity: 0.1;
+    right: -10vw;
   }
 }
 
@@ -1047,7 +1078,7 @@ footer a:hover {
 
   .mizu-sidebar {
     backdrop-filter: blur(24px);
-    background: rgba(29, 29, 31, 0.94);
+    background: rgba(7, 17, 31, 0.96);
     border-right: 0;
     border-top: 1px solid var(--mizu-line-strong);
     bottom: 0;
@@ -1060,15 +1091,13 @@ footer a:hover {
 
   .mizu-brand,
   .mizu-nav-label,
-  .mizu-sidebar-spacer,
-  .mizu-library-summary,
-  .mizu-nav-library {
+  .mizu-sidebar-spacer {
     display: none;
   }
 
-  .mizu-nav-primary {
+  .mizu-nav-library {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .mizu-nav a {
@@ -1096,11 +1125,10 @@ footer a:hover {
 
   .mizu-toolbar {
     gap: 8px;
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     padding: 7px 10px;
   }
 
-  .mizu-history .mizu-context,
   .mizu-toolbar-end {
     display: none;
   }
@@ -1162,6 +1190,14 @@ footer a:hover {
 
   body.mizu-home .page_grid > div {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .mizu-mascot-standee {
+    display: none;
+  }
+
+  .mizu-gallery-grid {
+    grid-template-columns: 1fr;
   }
 
   footer {

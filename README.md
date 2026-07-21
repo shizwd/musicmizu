@@ -2,9 +2,11 @@
 
 一个由 [Faircamp](https://faircamp.org/) 生成的独立音乐站，可直接部署到腾讯 EdgeOne Pages，并通过 GitHub Pages 在上线前预览。
 
-站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》和《ProjectMili》三张专辑。界面采用高信息密度的桌面音乐资料库布局，提供固定侧栏、专辑曲目表格、页面搜索、媒体键支持和全局播放器。
+站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》和《ProjectMili》三张专辑。界面采用以实用为先的高信息密度音乐资料库布局，提供固定侧栏、专辑曲目表格、页面搜索、媒体键支持和全局播放器。
 
 站内导航使用局部页面切换：播放中的音频节点不会随专辑或首页内容一起重载，因此切换页面时音乐和进度会连续保留。
+
+站娘“澪音 Mio”的头像用于 favicon 与站点品牌，透明立绘固定在桌面端右下角，三张主题插画和完整设定图位于首页介绍区。角色素材统一存放在 `catalog/assets/`，并由 Faircamp 复制到发布目录根部。
 
 ## 本地预览
 
@@ -72,6 +74,7 @@ catalog/                  Faircamp 音乐与站点配置
   catalog.eno             全站标题、简介、主题与元数据
   custom.css              桌面音乐应用布局与响应式主题
   custom.js               全局播放器、播放队列、搜索与局部导航
+  assets/                 澪音头像、透明立绘、设定图与插画
   noteblock/              音符盒专辑
   projectmili/            Mili 作品合集
 dist/                     已构建、可直接部署的静态站点
@@ -81,7 +84,7 @@ scripts/                  本地构建脚本
 
 ## 上线前检查
 
-- 将示例音乐、简介和 GitHub 联系链接换成正式内容。
+- 检查首页介绍、站娘设定和专辑信息是否仍与当前内容一致。
 - 如需 RSS、嵌入播放器或 M3U，在 `catalog/catalog.eno` 中设置正式域名 `base_url` 后再启用对应选项。
 - 确认音频和封面拥有发布权。
 - 将自定义域名绑定到 EdgeOne，并按所选中国大陆加速区域完成可能需要的备案。
