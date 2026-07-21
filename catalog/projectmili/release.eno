@@ -1,0 +1,29 @@
+title: ProjectMili
+permalink: projectmili
+date: 2026-07-21
+release_artist: Mili
+cover:
+description = 黑红色调的幻想角色与红色高塔插画
+file = cover.jpg
+release_download_access: disabled
+track_download_access: disabled
+track_numbering: arabic-dotted
+more_label: 专辑说明
+
+-- synopsis
+Mili 相关作品合集，共 13 首。
+-- synopsis
+
+-- more
+曲序按照桌面 FLAC 文件的下载时间（Windows 文件创建时间）从早到晚排列。所有音频保持 FLAC 无损编码，原始曲名与演唱者标签均予以保留。
+-- more
+
+theme:
+accent_hue = 354
+accent_chroma = 86
+accent_brightening = 66
+base_hue = 260
+base_chroma = 24
+round_corners = enabled
+waveforms = absolute
+
