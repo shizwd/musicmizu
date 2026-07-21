@@ -1,0 +1,5 @@
+.tools/
+catalog/.faircamp_build/
+catalog/.faircamp_cache/
+*.tmp
+

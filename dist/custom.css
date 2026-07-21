@@ -1,0 +1,86 @@
+:root {
+  color-scheme: dark;
+  --mizu-cyan: #59e7ef;
+  --mizu-lavender: #aeb7ff;
+  --mizu-ink: #050b14;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(63, 119, 188, 0.20), transparent 34rem),
+    radial-gradient(circle at 12% 58%, rgba(37, 198, 211, 0.08), transparent 28rem),
+    linear-gradient(155deg, #07111f 0%, var(--mizu-ink) 48%, #090c1d 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 42px 42px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(to bottom, black, transparent 70%);
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
+}
+
+::selection {
+  background: rgba(89, 231, 239, 0.3);
+  color: white;
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-color: var(--mizu-cyan);
+}
+
+button,
+[role="button"],
+a {
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease,
+    transform 160ms ease, opacity 160ms ease;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--mizu-cyan);
+  outline-offset: 4px;
+}
+
+img {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.018em;
+}
+
+footer {
+  opacity: 0.78;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

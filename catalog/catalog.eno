@@ -1,0 +1,50 @@
+title: Music Mizu
+language: zh-Hans
+faircamp_signature: enabled
+favicon: favicon.png
+m3u: disabled
+embedding: disabled
+release_downloads: flac
+track_downloads: flac
+release_extras: separate
+site_assets:
+- custom.css
+- robots.txt
+
+-- site_metadata
+<meta name="description" content="Music Mizu 独立音乐站：聆听、发现并下载原创音乐。">
+<meta name="theme-color" content="#07111f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Music Mizu">
+<meta property="og:title" content="Music Mizu — 独立音乐与水之记忆">
+<meta property="og:description" content="在这里聆听原创氛围电子音乐。无追踪、无广告，音乐直接抵达你。">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="{{custom.css}}">
+-- site_metadata
+
+-- synopsis
+独立音乐与水的记忆。
+
+Independent sounds, flowing freely.
+-- synopsis
+
+-- more
+## 关于 Music Mizu
+
+这是一个由 [Faircamp](https://faircamp.org/) 驱动的独立音乐站。没有广告、没有追踪，也不需要账号；你可以直接试听和下载音乐。
+
+当前曲目为项目自带的原创合成示例，用于确认播放器、波形与下载流程均可工作。发布前，请将 `catalog/memory-of-water/` 中的示例文件替换成你自己的音频与封面。
+
+联系与更新：[GitHub](https://github.com/shizwd/musicmizu)
+-- more
+
+theme:
+base = dark
+dynamic_range = 34
+base_hue = 218
+base_chroma = 28
+accent_hue = 188
+accent_chroma = 82
+accent_brightening = 72
+round_corners = enabled
+waveforms = absolute

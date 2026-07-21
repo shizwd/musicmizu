@@ -1,0 +1,27 @@
+title: 水之记忆 / Memory of Water
+permalink: memory-of-water
+date: 2026-07-21
+release_artist: Music Mizu
+cover:
+description = 月光下的深蓝水面，一圈青蓝色涟漪如同唱片纹路
+file = cover.png
+release_downloads: flac
+track_downloads: flac
+track_numbering: arabic-dotted
+more_label: 专辑说明
+
+-- synopsis
+两段从潮汐、月光与水下回声生长出来的氛围电子小品。
+-- synopsis
+
+-- more
+这张示例专辑用于展示 Music Mizu 的完整播放体验。两首曲目均由程序化合成生成，不包含第三方版权素材。
+
+建议戴上耳机，从《潮汐记忆》开始，顺流而下。
+-- more
+
+theme:
+accent_hue = 188
+accent_chroma = 88
+accent_brightening = 76
+round_corners = enabled
