@@ -2,7 +2,9 @@
 
 一个由 [Faircamp](https://faircamp.org/) 生成的独立音乐站，可直接部署到腾讯 EdgeOne Pages，并通过 GitHub Pages 在上线前预览。
 
-站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》和《ProjectMili》三张专辑，并提供可播放音频、波形与封面。
+站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》和《ProjectMili》三张专辑。界面采用高信息密度的桌面音乐资料库布局，提供固定侧栏、专辑曲目表格、页面搜索、媒体键支持和全局播放器。
+
+站内导航使用局部页面切换：播放中的音频节点不会随专辑或首页内容一起重载，因此切换页面时音乐和进度会连续保留。
 
 ## 本地预览
 
@@ -68,7 +70,8 @@ EdgeOne 会直接发布 Faircamp 的静态输出。以后每次推送到生产�
 ```text
 catalog/                  Faircamp 音乐与站点配置
   catalog.eno             全站标题、简介、主题与元数据
-  custom.css              少量视觉增强
+  custom.css              桌面音乐应用布局与响应式主题
+  custom.js               全局播放器、播放队列、搜索与局部导航
   noteblock/              音符盒专辑
   projectmili/            Mili 作品合集
 dist/                     已构建、可直接部署的静态站点
