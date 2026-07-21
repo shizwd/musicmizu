@@ -2,7 +2,7 @@
 
 一个由 [Faircamp](https://faircamp.org/) 生成的独立音乐站，可直接部署到腾讯 EdgeOne Pages，并通过 GitHub Pages 在上线前预览。
 
-站点包含《水之记忆》《Noteblock》和《草薙宁宁（Wonderlands✕Showtime）》三张专辑，并提供可播放音频、波形与封面。《水之记忆》的示例音频为程序化合成，不含第三方版权素材。
+站点包含《Noteblock》和《草薙宁宁（Wonderlands✕Showtime）》两张专辑，并提供可播放音频、波形与封面。
 
 ## 本地预览
 
@@ -33,11 +33,10 @@ bash scripts/build.sh
 
 ## 替换成你的音乐
 
-1. 删除 `catalog/memory-of-water/` 中的示例音频和封面。
-2. 每张专辑在 `catalog/` 下建立一个目录，放入 FLAC、MP3、WAV、OGG、OPUS、AIFF 或 ALAC 音频。
-3. 将封面命名为 `cover.jpg` 或 `cover.png`。
-4. 复制并修改示例 `release.eno`；站点总标题、简介和主题在 `catalog/catalog.eno` 中修改。
-5. 重新运行构建脚本，并提交更新后的 `catalog/` 与 `dist/`。
+1. 每张专辑在 `catalog/` 下建立一个目录，放入 FLAC、MP3、WAV、OGG、OPUS、AIFF 或 ALAC 音频。
+2. 将封面命名为 `cover.jpg` 或 `cover.png`。
+3. 复制并修改已有专辑的 `release.eno`；站点总标题、简介和主题在 `catalog/catalog.eno` 中修改。
+4. 重新运行构建脚本，并提交更新后的 `catalog/` 与 `dist/`。
 
 Faircamp 会从音频标签读取曲名和序号。建议在导入前写好 `title`、`artist`、`album`、`track` 和 `date` 标签。
 
@@ -70,7 +69,7 @@ EdgeOne 会直接发布 Faircamp 的静态输出。以后每次推送到生产�
 catalog/                  Faircamp 音乐与站点配置
   catalog.eno             全站标题、简介、主题与元数据
   custom.css              少量视觉增强
-  memory-of-water/        可删除的示例专辑
+  noteblock/              音符盒专辑
 dist/                     已构建、可直接部署的静态站点
 scripts/                  本地构建脚本
 .github/workflows/        GitHub Pages 预览工作流
