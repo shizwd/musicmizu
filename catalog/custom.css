@@ -15,6 +15,8 @@
   --mizu-tertiary: #6e6e73;
   --mizu-sidebar-width: 238px;
   --mizu-toolbar-height: 76px;
+  --mizu-content-max: 1320px;
+  --mizu-gutter: clamp(22px, 3vw, 42px);
   --mizu-radius: 10px;
   --mizu-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
@@ -34,8 +36,11 @@ body {
   color: var(--mizu-text);
   font-family: inherit;
   margin: 0;
+  min-height: 100dvh;
   min-width: 320px;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body::before {
@@ -166,10 +171,13 @@ input:focus-visible {
   gap: 2px;
 }
 
-.mizu-nav a {
+.mizu-nav a,
+.mizu-nav button {
   align-items: center;
+  border: 0;
   border-radius: 7px;
   color: #d2d2d7;
+  cursor: pointer;
   display: flex;
   font-size: 13px;
   font-weight: 540;
@@ -181,7 +189,8 @@ input:focus-visible {
   white-space: nowrap;
 }
 
-.mizu-nav a:hover {
+.mizu-nav a:hover,
+.mizu-nav button:hover {
   background: rgba(255, 255, 255, 0.065);
   color: #fff;
 }
@@ -192,8 +201,13 @@ input:focus-visible {
   font-weight: 650;
 }
 
+.mizu-mobile-search-button {
+  display: none;
+}
+
 .mizu-nav a.active .mizu-nav-icon,
-.mizu-nav a:hover .mizu-nav-icon {
+.mizu-nav a:hover .mizu-nav-icon,
+.mizu-nav button:hover .mizu-nav-icon {
   color: var(--mizu-accent);
 }
 
@@ -205,6 +219,32 @@ input:focus-visible {
   width: 18px;
 }
 
+.mizu-icon-svg {
+  display: block;
+  fill: none;
+  height: 1em;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 1em;
+}
+
+.mizu-transport .mizu-icon-svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.mizu-nav-cover {
+  border-radius: 4px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.28);
+  flex: 0 0 20px;
+  height: 20px;
+  object-fit: cover;
+  width: 20px;
+}
+
 .mizu-sidebar-spacer {
   flex: 1;
 }
@@ -212,23 +252,42 @@ input:focus-visible {
 .layout {
   margin-left: var(--mizu-sidebar-width) !important;
   max-width: none !important;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: var(--mizu-toolbar-height);
   width: calc(100% - var(--mizu-sidebar-width)) !important;
   position: relative;
   z-index: 1;
 }
 
+.layout > main {
+  align-content: start;
+  min-width: 0;
+  width: 100%;
+}
+
 .mizu-mascot-standee {
   bottom: -4vh;
   height: min(78vh, 900px);
   object-fit: contain;
-  opacity: 0.16;
+  opacity: 0.07;
   pointer-events: none;
   position: fixed;
-  right: -2.5vw;
+  max-width: 36vw;
+  right: 0;
   user-select: none;
   z-index: 0;
+}
+
+body.mizu-home .mizu-mascot-standee {
+  opacity: 0.14;
+  right: 0;
+}
+
+body.mizu-release .mizu-mascot-standee,
+body.mizu-track-detail .mizu-mascot-standee {
+  height: min(66vh, 720px);
+  opacity: 0.045;
+  right: 0;
 }
 
 .layout > header {
@@ -236,12 +295,14 @@ input:focus-visible {
   backdrop-filter: blur(28px) saturate(140%);
   background: var(--mizu-toolbar);
   border-bottom: 1px solid var(--mizu-line);
+  display: block;
   height: var(--mizu-toolbar-height);
   left: var(--mizu-sidebar-width);
   padding: 0 !important;
   position: fixed;
   right: 0;
   top: 0;
+  width: auto;
   z-index: 140;
 }
 
@@ -249,9 +310,10 @@ input:focus-visible {
   align-items: center;
   display: grid;
   gap: 16px;
-  grid-template-columns: minmax(420px, 1fr) minmax(230px, 0.48fr);
+  grid-template-columns: minmax(420px, 680px) minmax(230px, 1fr);
   height: 100%;
   padding: 8px 18px;
+  width: 100%;
 }
 
 .mizu-player-shell {
@@ -278,9 +340,12 @@ input:focus-visible {
   border: 0;
   color: #dadade;
   cursor: pointer;
-  font-size: 15px;
+  align-items: center;
+  display: inline-flex;
+  font-size: 16px;
   height: 32px;
-  padding: 0;
+  justify-content: center;
+  padding: 0 !important;
   width: 30px;
 }
 
@@ -301,6 +366,30 @@ input:focus-visible {
   grid-template-columns: 58px minmax(0, 1fr);
   height: 100%;
   min-width: 0;
+}
+
+.mizu-now-playing.mizu-player-empty {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mizu-player-empty .mizu-player-art {
+  display: none;
+}
+
+.mizu-player-empty .mizu-player-center {
+  align-items: center;
+  display: grid;
+  height: 100%;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.mizu-player-empty .mizu-player-meta {
+  justify-content: center;
+}
+
+.mizu-player-empty .mizu-progress-row {
+  display: none;
 }
 
 .mizu-player-art {
@@ -336,13 +425,17 @@ input:focus-visible {
 }
 
 .mizu-player-meta strong {
+  flex: 1 1 auto;
   font-size: 11px;
   font-weight: 650;
+  min-width: 0;
 }
 
 .mizu-player-meta span {
   color: var(--mizu-secondary);
+  flex: 0 1 38%;
   font-size: 10px;
+  min-width: 0;
 }
 
 .mizu-progress-row {
@@ -411,6 +504,13 @@ input:focus-visible {
   width: 92px;
 }
 
+.mizu-volume > span,
+.mizu-search > span {
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
 .mizu-volume .mizu-range {
   width: 66px;
 }
@@ -449,6 +549,13 @@ input:focus-visible {
   color: var(--mizu-tertiary);
 }
 
+.mizu-search-status {
+  color: var(--mizu-tertiary);
+  flex: 0 0 auto;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
 #mizu-audio {
   display: none;
 }
@@ -478,9 +585,13 @@ input:focus-visible {
 
 /* Content canvas */
 #content {
-  min-height: calc(100vh - var(--mizu-toolbar-height));
+  min-height: calc(100dvh - var(--mizu-toolbar-height));
   opacity: 1;
   transition: opacity 120ms ease;
+}
+
+#content:focus {
+  outline: none;
 }
 
 body.mizu-loading #content {
@@ -492,7 +603,14 @@ body.mizu-loading #content {
   margin: 0 !important;
   max-width: none !important;
   min-height: 0 !important;
-  padding: 22px clamp(22px, 3vw, 42px) !important;
+  padding: 22px var(--mizu-gutter) !important;
+  width: 100% !important;
+}
+
+.page > * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: var(--mizu-content-max) !important;
   width: 100% !important;
 }
 
@@ -514,7 +632,7 @@ body.mizu-loading #content {
 .page_grid > *,
 .page_split > * {
   margin: 0 !important;
-  max-width: none !important;
+  max-width: var(--mizu-content-max) !important;
 }
 
 .page_grid {
@@ -570,6 +688,11 @@ h3 {
   gap: 6px;
   min-height: 31px;
   padding: 0 12px;
+}
+
+.actions svg {
+  margin-inline-end: 0 !important;
+  top: 0 !important;
 }
 
 .actions button:hover,
@@ -633,6 +756,7 @@ body.mizu-home #content > .page:first-child .actions {
 .mizu-section-heading {
   align-items: baseline;
   display: flex;
+  gap: 12px;
   grid-column: 1 / -1;
   justify-content: space-between;
   margin: 0 0 13px;
@@ -641,23 +765,43 @@ body.mizu-home #content > .page:first-child .actions {
 .mizu-section-heading h2 {
   font-size: 20px;
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .mizu-section-heading span {
   color: var(--mizu-tertiary);
+  flex: 0 0 auto;
   font-size: 11px;
 }
 
 body.mizu-home .page_grid > div {
   display: grid !important;
   gap: clamp(14px, 2vw, 24px) !important;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 220px)) !important;
 }
 
-body.mizu-home .page_grid > .mizu-section-heading {
+body.mizu-home .page_grid > div > .mizu-section-heading {
   display: flex !important;
   grid-column: 1 / -1;
-  margin-bottom: -1px;
+  margin-bottom: 0;
+}
+
+body.mizu-no-results .page_grid > div::after {
+  color: var(--mizu-secondary);
+  content: "没有匹配的专辑";
+  font-size: 13px;
+  grid-column: 1 / -1;
+  padding: 18px 0 28px;
+}
+
+body.mizu-no-results.mizu-release .tracks::after,
+body.mizu-no-results.mizu-track-detail .tracks::after {
+  color: var(--mizu-secondary);
+  content: "没有匹配的曲目";
+  display: block;
+  font-size: 13px;
+  padding: 22px 8px;
 }
 
 .release {
@@ -714,7 +858,8 @@ body.mizu-home .page_grid > .mizu-section-heading {
 }
 
 /* Album hero */
-body.mizu-release #content > .page:first-child {
+body.mizu-release #content > .page:first-child,
+body.mizu-track-detail #content > .page:first-child {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
     radial-gradient(circle at 11% 18%, rgba(104, 220, 231, 0.12), transparent 28rem);
@@ -722,23 +867,27 @@ body.mizu-release #content > .page:first-child {
   padding-bottom: 24px !important;
 }
 
-body.mizu-release .page_split {
+body.mizu-release .page_split,
+body.mizu-track-detail .page_split {
   align-items: end;
   display: grid !important;
   gap: clamp(22px, 3vw, 36px);
   grid-template-columns: clamp(168px, 18vw, 228px) minmax(0, 1fr);
 }
 
-body.mizu-release .page_split .cover {
+body.mizu-release .page_split .cover,
+body.mizu-track-detail .page_split .cover {
   margin: 0;
   width: 100%;
 }
 
-body.mizu-release .page_split .cover > a {
+body.mizu-release .page_split .cover > a,
+body.mizu-track-detail .page_split .cover > a {
   display: block;
 }
 
-body.mizu-release .page_split .cover img {
+body.mizu-release .page_split .cover img,
+body.mizu-track-detail .page_split .cover img {
   aspect-ratio: 1;
   border-radius: 11px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
@@ -748,12 +897,22 @@ body.mizu-release .page_split .cover img {
   width: 100%;
 }
 
-body.mizu-release .page_split .abstract > div[style] {
+body.mizu-release .page_split .abstract > div[style],
+body.mizu-track-detail .page_split .abstract > div[style] {
   color: var(--mizu-secondary);
   font-size: 12px;
   line-height: 1.5;
   margin: 9px 0 !important;
   max-width: 62ch;
+}
+
+body.mizu-track-detail .page_split {
+  align-items: center;
+  grid-template-columns: clamp(144px, 16vw, 196px) minmax(0, 1fr);
+}
+
+body.mizu-track-detail #content > .page:nth-child(2) {
+  padding-top: 10px !important;
 }
 
 dialog#overlay {
@@ -784,9 +943,20 @@ dialog#overlay img {
   align-self: center;
 }
 
-.mizu-track-header span:first-child,
-.mizu-track-header span:last-child {
+.mizu-track-header > span:first-child,
+.mizu-track-header > span:last-child {
   text-align: center;
+}
+
+.mizu-track-title-heading {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  padding: 0 10px 0 2px;
+}
+
+.mizu-track-title-heading > span:first-child {
+  padding-right: 7px;
+  text-align: right;
 }
 
 .tracks {
@@ -876,15 +1046,17 @@ dialog#overlay img {
   flex: 0 0 30px;
   font-size: 11px;
   font-variant-numeric: tabular-nums;
+  padding-right: 7px;
   text-align: right;
-  transform: translateX(-7px);
 }
 
 .track .title {
   color: #f5f5f7;
   display: block;
   font-size: 12px;
+  flex: 1;
   font-weight: 560;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -892,6 +1064,12 @@ dialog#overlay img {
 
 .track .title:hover {
   text-decoration: underline;
+}
+
+.track a.title:focus-visible {
+  border-radius: 3px;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .track .artists {
@@ -936,7 +1114,7 @@ dialog#overlay img {
   color: var(--mizu-secondary);
   font-size: 12px;
   line-height: 1.6;
-  margin-top: 6px;
+  margin-top: 0;
   max-width: none !important;
   padding: 22px 0 6px;
 }
@@ -1031,6 +1209,7 @@ dialog#overlay img {
 }
 
 .scroll_target {
+  scroll-margin-bottom: 18px;
   scroll-margin-top: calc(var(--mizu-toolbar-height) + 15px);
 }
 
@@ -1038,9 +1217,11 @@ footer {
   border-top: 1px solid var(--mizu-line);
   color: var(--mizu-tertiary);
   font-size: 10px;
-  margin: 28px clamp(22px, 3vw, 42px) 0 !important;
+  margin: 28px auto 0 !important;
+  max-width: var(--mizu-content-max) !important;
   opacity: 1 !important;
   padding: 18px 0 28px !important;
+  width: calc(100% - (2 * var(--mizu-gutter))) !important;
 }
 
 footer .browse {
@@ -1057,7 +1238,7 @@ footer a:hover {
   }
 
   .mizu-toolbar {
-    grid-template-columns: minmax(340px, 1fr) 170px;
+    grid-template-columns: minmax(340px, 1fr) minmax(170px, 0.55fr);
   }
 
   .mizu-volume {
@@ -1070,10 +1251,13 @@ footer a:hover {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 860px), (max-width: 1024px) and (orientation: landscape) and (max-height: 500px) {
   :root {
     --mizu-sidebar-width: 0px;
-    --mizu-toolbar-height: 82px;
+    --mizu-mobile-top-safe: env(safe-area-inset-top, 0px);
+    --mizu-toolbar-height: calc(82px + var(--mizu-mobile-top-safe));
+    --mizu-bottom-nav-height: calc(57px + env(safe-area-inset-bottom, 0px));
+    --mizu-gutter: 16px;
   }
 
   .mizu-sidebar {
@@ -1083,8 +1267,8 @@ footer a:hover {
     border-top: 1px solid var(--mizu-line-strong);
     bottom: 0;
     display: block;
-    height: 57px;
-    padding: 4px 8px;
+    height: var(--mizu-bottom-nav-height);
+    padding: 4px max(8px, env(safe-area-inset-right, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
     top: auto;
     width: 100%;
   }
@@ -1097,25 +1281,44 @@ footer a:hover {
 
   .mizu-nav-library {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
-  .mizu-nav a {
+  .mizu-nav a,
+  .mizu-nav button {
     flex-direction: column;
     font-size: 9px;
     gap: 1px;
     justify-content: center;
     min-height: 48px;
-    padding: 2px 8px;
+    padding: 2px 3px;
+  }
+
+  .mizu-mobile-search-button {
+    display: flex;
+  }
+
+  .mizu-nav a > span:last-child,
+  .mizu-nav button > span:last-child {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .mizu-nav-icon {
     font-size: 18px;
   }
 
+  .mizu-nav-cover {
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+  }
+
   .layout {
     margin-left: 0 !important;
-    padding-bottom: 57px;
+    padding-bottom: calc(var(--mizu-bottom-nav-height) + 8px);
     width: 100% !important;
   }
 
@@ -1126,19 +1329,47 @@ footer a:hover {
   .mizu-toolbar {
     gap: 8px;
     grid-template-columns: minmax(0, 1fr);
-    padding: 7px 10px;
+    padding: calc(7px + var(--mizu-mobile-top-safe)) max(10px, env(safe-area-inset-right, 0px)) 7px max(10px, env(safe-area-inset-left, 0px));
   }
 
   .mizu-toolbar-end {
     display: none;
   }
 
+  body.mizu-search-open .mizu-toolbar-end {
+    -webkit-backdrop-filter: blur(24px) saturate(135%);
+    backdrop-filter: blur(24px) saturate(135%);
+    background: rgba(7, 17, 31, 0.96);
+    border-bottom: 1px solid var(--mizu-line-strong);
+    display: flex;
+    height: 58px;
+    justify-content: stretch;
+    left: 0;
+    padding: 9px max(16px, env(safe-area-inset-right, 0px)) 9px max(16px, env(safe-area-inset-left, 0px));
+    position: fixed;
+    right: 0;
+    top: var(--mizu-toolbar-height);
+    z-index: 139;
+  }
+
+  body.mizu-search-open .mizu-search {
+    height: 40px;
+    max-width: none;
+    width: 100%;
+  }
+
+  body.mizu-search-open .mizu-mobile-search-button {
+    background: rgba(104, 220, 231, 0.16);
+    color: var(--mizu-accent);
+  }
+
   .mizu-player-shell {
-    grid-template-columns: 82px minmax(0, 1fr);
+    grid-template-columns: 124px minmax(0, 1fr);
   }
 
   .mizu-transport button {
-    width: 25px;
+    height: 44px;
+    width: 40px;
   }
 
   .mizu-now-playing {
@@ -1147,7 +1378,6 @@ footer a:hover {
 
   .mizu-player-art {
     height: 48px;
-    margin-left: 5px;
     width: 48px;
   }
 
@@ -1159,19 +1389,44 @@ footer a:hover {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .mizu-progress-row .mizu-range {
+    height: 14px;
+  }
+
+  .mizu-range::-webkit-slider-thumb {
+    height: 11px;
+    margin-top: -4px;
+    opacity: 0.9;
+    width: 11px;
+  }
+
   .mizu-progress-row time {
     display: none;
   }
 
   .page {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(16px, env(safe-area-inset-right, 0px)) !important;
   }
 
-  body.mizu-release .page_split {
+  body.mizu-release .page_split,
+  body.mizu-track-detail .page_split {
     align-items: center;
     gap: 17px;
-    grid-template-columns: 128px minmax(0, 1fr);
+    grid-template-columns: clamp(104px, 26vw, 128px) minmax(0, 1fr);
+  }
+
+  body.mizu-release .page_split .abstract,
+  body.mizu-track-detail .page_split .abstract {
+    min-width: 0;
+  }
+
+  body.mizu-release .page_split .abstract h1,
+  body.mizu-track-detail .page_split .abstract h1,
+  .page_more h1 {
+    hyphens: auto;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .abstract h1 {
@@ -1179,6 +1434,7 @@ footer a:hover {
   }
 
   body.mizu-release .page_split .abstract > div[style],
+  body.mizu-track-detail .page_split .abstract > div[style],
   body.mizu-release .abstract .actions:not(.primary),
   .mizu-album-stats {
     display: none;
@@ -1188,8 +1444,15 @@ footer a:hover {
     margin: 12px 0 0;
   }
 
+  .actions button,
+  .actions a {
+    min-height: 36px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
   body.mizu-home .page_grid > div {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
   .mizu-mascot-standee {
@@ -1197,23 +1460,45 @@ footer a:hover {
   }
 
   .mizu-gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   footer {
-    margin-left: 16px !important;
-    margin-right: 16px !important;
+    margin-left: max(16px, env(safe-area-inset-left, 0px)) !important;
+    margin-right: max(16px, env(safe-area-inset-right, 0px)) !important;
+    width: auto !important;
+  }
+
+  .track,
+  .mizu-track-header {
+    grid-template-columns: 44px minmax(0, 1fr) 56px;
+  }
+
+  .track {
+    min-height: 56px;
+  }
+
+  .track_playback {
+    height: 44px !important;
+    width: 44px !important;
+  }
+
+  .scroll_target {
+    scroll-margin-bottom: calc(var(--mizu-bottom-nav-height) + 12px);
+  }
+}
+
+@media (max-width: 620px) {
+  body.mizu-home .page_grid > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
 @media (max-width: 480px) {
-  body.mizu-release .page_split {
-    align-items: start;
-    grid-template-columns: 96px minmax(0, 1fr);
-  }
-
   body.mizu-release .release_artists,
-  body.mizu-release .release_artists a {
+  body.mizu-release .release_artists a,
+  body.mizu-track-detail .release_artists,
+  body.mizu-track-detail .release_artists a {
     font-size: 12px;
   }
 
@@ -1222,15 +1507,116 @@ footer a:hover {
   }
 
   .track {
-    grid-template-columns: 34px minmax(0, 1fr) 50px;
     padding-left: 2px !important;
     padding-right: 2px !important;
   }
 
   .mizu-track-header {
-    grid-template-columns: 34px minmax(0, 1fr) 50px;
     padding-left: 2px;
     padding-right: 2px;
+  }
+
+  .mizu-track-title-heading {
+    grid-template-columns: 27px minmax(0, 1fr);
+    padding-right: 6px;
+  }
+
+  .track .number {
+    flex-basis: 27px;
+  }
+
+  .mizu-gallery-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mizu-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  body.mizu-release .page_split,
+  body.mizu-track-detail .page_split {
+    gap: 14px;
+    grid-template-columns: 92px minmax(0, 1fr);
+  }
+
+  .mizu-player-meta span {
+    display: none;
+  }
+
+  .mizu-player-meta strong {
+    max-width: 100%;
+  }
+}
+
+@media (pointer: coarse) {
+  .actions button,
+  .actions a,
+  .mizu-gallery-heading a {
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
+  }
+
+  .mizu-progress-row .mizu-range {
+    height: 26px;
+  }
+}
+
+@media (hover: none) {
+  .release:hover img {
+    filter: none;
+    transform: none;
+  }
+
+  .track:hover {
+    background: transparent !important;
+  }
+
+  .track.mizu-current:hover {
+    background: rgba(104, 220, 231, 0.09) !important;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 1024px) and (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --mizu-toolbar-height: calc(64px + var(--mizu-mobile-top-safe));
+    --mizu-bottom-nav-height: calc(51px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mizu-sidebar {
+    height: var(--mizu-bottom-nav-height);
+  }
+
+  .mizu-nav a,
+  .mizu-nav button {
+    min-height: 42px;
+  }
+
+  .mizu-toolbar {
+    padding-bottom: 4px;
+    padding-top: calc(4px + var(--mizu-mobile-top-safe));
+  }
+
+  .mizu-player-shell {
+    height: 50px;
+  }
+
+  .mizu-now-playing {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .mizu-player-art {
+    height: 44px;
+    width: 44px;
+  }
+
+  .page {
+    padding-bottom: 16px !important;
+    padding-top: 16px !important;
   }
 }
 

@@ -20,4 +20,22 @@ if ($LASTEXITCODE -ne 0) {
     throw "Faircamp build failed with exit code $LASTEXITCODE"
 }
 
+# Music Mizu owns playback and persists its audio element across page changes.
+# Remove Faircamp's second player runtime to avoid duplicate observers and controls.
+$buildDir = Join-Path $projectRoot 'dist'
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+Get-ChildItem -Path $buildDir -Filter '*.html' -Recurse | ForEach-Object {
+    $html = [System.IO.File]::ReadAllText($_.FullName)
+    $html = [regex]::Replace(
+        $html,
+        '<script defer src="[^"]*player\.js\?[^\"]*"></script>\r?\n?',
+        ''
+    )
+    $html = $html.Replace(
+        'content="width=device-width, initial-scale=1"',
+        'content="width=device-width, initial-scale=1, viewport-fit=cover"'
+    )
+    [System.IO.File]::WriteAllText($_.FullName, $html, $utf8NoBom)
+}
+
 Write-Host "Built site at $(Join-Path $projectRoot 'dist')"

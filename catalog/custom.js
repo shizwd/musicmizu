@@ -1,25 +1,31 @@
 (() => {
   "use strict";
 
+  const svgIcon = (content, viewBox = "0 0 24 24") =>
+    `<svg class="mizu-icon-svg" viewBox="${viewBox}" aria-hidden="true" focusable="false">${content}</svg>`;
+
   const icons = {
-    previous: "⏮",
-    play: "▶",
-    pause: "❚❚",
-    next: "⏭",
-    library: "♫",
-    search: "⌕",
-    volume: "◕"
+    previous: svgIcon('<path d="M6.5 5.5v13M18 6.5 9 12l9 5.5z"/>'),
+    play: svgIcon('<path d="m8 5.5 10.5 6.5L8 18.5z"/>'),
+    pause: svgIcon('<path d="M7.5 5.5h3v13h-3zm6 0h3v13h-3z"/>'),
+    next: svgIcon('<path d="M17.5 5.5v13M6 6.5l9 5.5-9 5.5z"/>'),
+    library: svgIcon('<path d="M9 5v11.2a3 3 0 1 1-1.5-2.6V7.3L18 5v8.2a3 3 0 1 1-1.5-2.6V3.1z"/>'),
+    search: svgIcon('<circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 4 4"/>'),
+    volume: svgIcon('<path d="M4 10v4h3l4 3V7l-4 3zm10.5-.5a4 4 0 0 1 0 5m2-7a7 7 0 0 1 0 9"/>')
   };
 
   const albumArtists = {
     "projectmili": "Mili",
-    "noteblock": "Noteblock",
+    "noteblock": "Music Mizu",
     "kusanagi-nene-wonderlands-showtime": "草薙宁宁 · Wonderlands×Showtime"
   };
 
   const originalLogo = document.querySelector("#logo");
   const siteRoot = new URL(originalLogo ? originalLogo.getAttribute("href") : "./", window.location.href);
-  const normalizePath = path => path.endsWith("/") ? path : `${path}/`;
+  const normalizePath = path => {
+    const withoutIndex = path.replace(/\/index\.html$/i, "/");
+    return withoutIndex.endsWith("/") ? withoutIndex : `${withoutIndex}/`;
+  };
   const rootPath = normalizePath(siteRoot.pathname);
 
   let queue = [];
@@ -53,11 +59,11 @@
       <div class="mizu-nav-label">音乐库</div>
       <nav class="mizu-nav mizu-nav-library">
         <a href="${siteRoot.href}" data-nav="home"><span class="mizu-nav-icon">${icons.library}</span><span>全部专辑</span></a>
-        <a href="${pathFor("projectmili")}"><span class="mizu-nav-icon">●</span><span>ProjectMili</span></a>
-        <a href="${pathFor("kusanagi-nene-wonderlands-showtime")}"><span class="mizu-nav-icon">●</span><span>草薙宁宁</span></a>
-        <a href="${pathFor("noteblock")}"><span class="mizu-nav-icon">●</span><span>Noteblock</span></a>
+        <a href="${pathFor("projectmili")}"><img class="mizu-nav-cover" src="${assetFor("projectmili/cover_160.jpg")}" alt=""><span>ProjectMili</span></a>
+        <a href="${pathFor("kusanagi-nene-wonderlands-showtime")}"><img class="mizu-nav-cover" src="${assetFor("kusanagi-nene-wonderlands-showtime/cover_160.jpg")}" alt=""><span>草薙宁宁</span></a>
+        <a href="${pathFor("noteblock")}"><img class="mizu-nav-cover" src="${assetFor("noteblock/cover_160.jpg")}" alt=""><span>Noteblock</span></a>
+        <button class="mizu-mobile-search-button" type="button" data-mobile-search aria-label="搜索当前页面" aria-controls="mizu-search-panel" aria-expanded="false"><span class="mizu-nav-icon">${icons.search}</span><span>搜索</span></button>
       </nav>
-      <div class="mizu-sidebar-spacer"></div>
     `;
     document.body.insertBefore(aside, document.body.firstChild);
   }
@@ -74,21 +80,21 @@
             <button type="button" data-player="play" aria-label="播放" disabled>${icons.play}</button>
             <button type="button" data-player="next" aria-label="下一首" disabled>${icons.next}</button>
           </div>
-          <div class="mizu-now-playing">
-            <img class="mizu-player-art" alt="" src="">
+          <div class="mizu-now-playing mizu-player-empty">
+            <img class="mizu-player-art" alt="">
             <div class="mizu-player-center">
               <div class="mizu-player-meta"><strong>选择一首歌曲</strong><span>Music Mizu</span></div>
               <div class="mizu-progress-row">
                 <time data-time="current">0:00</time>
-                <input class="mizu-range" data-player="progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="播放进度">
+                <input class="mizu-range" data-player="progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="播放进度" aria-valuetext="尚未选择歌曲" disabled>
                 <time data-time="total">0:00</time>
               </div>
             </div>
           </div>
         </div>
-        <div class="mizu-toolbar-end">
+        <div class="mizu-toolbar-end" id="mizu-search-panel">
           <label class="mizu-volume" title="音量"><span>${icons.volume}</span><input class="mizu-range" data-player="volume" type="range" min="0" max="1" value="0.9" step="0.01" aria-label="音量"></label>
-          <label class="mizu-search"><span>${icons.search}</span><input type="search" placeholder="搜索当前页面" aria-label="搜索当前页面"></label>
+          <label class="mizu-search"><span>${icons.search}</span><input type="search" placeholder="搜索当前页面" aria-label="搜索当前页面"><output class="mizu-search-status" aria-live="polite"></output></label>
         </div>
       </div>
     `;
@@ -130,13 +136,15 @@
     const artist = element.querySelector(".artists")?.textContent.trim()
       || document.querySelector(".release_artists")?.textContent.trim()
       || "Music Mizu";
+    const pageAlbum = document.querySelector("#content h1")?.textContent.trim() || "Music Mizu";
+    const activeAlbum = document.querySelector(".mizu-nav a.active span:last-child")?.textContent.trim();
 
     return {
       element,
       src: preferred ? preferred.src : "",
       title: element.querySelector(".title")?.textContent.trim() || "未知曲目",
       artist,
-      album: document.querySelector("#content h1")?.textContent.trim() || "Music Mizu",
+      album: document.body.classList.contains("mizu-track-detail") && activeAlbum ? activeAlbum : pageAlbum,
       cover: rowCover?.src || pageCover?.src || "",
       duration: Number(element.dataset.duration) || 0
     };
@@ -166,8 +174,10 @@
     const playButton = document.querySelector('[data-player="play"]');
     const previous = document.querySelector('[data-player="previous"]');
     const next = document.querySelector('[data-player="next"]');
+    const progress = document.querySelector('[data-player="progress"]');
 
     if (currentTrack) {
+      document.querySelector(".mizu-now-playing")?.classList.remove("mizu-player-empty");
       title.textContent = currentTrack.title;
       artist.textContent = `${currentTrack.artist} — ${currentTrack.album}`;
       art.src = currentTrack.cover;
@@ -175,20 +185,28 @@
       playButton.disabled = false;
       previous.disabled = false;
       next.disabled = false;
+      progress.disabled = false;
     }
 
-    playButton.textContent = audio && !audio.paused ? icons.pause : icons.play;
+    playButton.innerHTML = audio && !audio.paused ? icons.pause : icons.play;
     playButton.setAttribute("aria-label", audio && !audio.paused ? "暂停" : "播放");
     document.body.classList.toggle("mizu-playing", Boolean(audio && !audio.paused));
     markCurrentTrack();
   }
 
   function markCurrentTrack() {
+    const audio = document.querySelector("#mizu-audio");
     document.querySelectorAll("#content .track").forEach(element => {
       const track = trackFromElement(element);
-      element.classList.toggle("mizu-current", Boolean(currentTrack && track.src === currentTrack.src));
+      const isCurrent = Boolean(currentTrack && track.src === currentTrack.src);
+      const isPlaying = Boolean(isCurrent && audio && !audio.paused);
+      element.classList.toggle("mizu-current", isCurrent);
       const button = element.querySelector(".track_playback");
-      if (button) button.setAttribute("aria-label", `${currentTrack && track.src === currentTrack.src ? "播放中的" : "播放"} ${track.title}`);
+      if (button) {
+        button.setAttribute("aria-label", `${isCurrent ? (isPlaying ? "暂停" : "继续播放") : "播放"} ${track.title}`);
+        const icon = button.querySelector(".icon");
+        if (icon) icon.innerHTML = isPlaying ? icons.pause : icons.play;
+      }
     });
   }
 
@@ -249,6 +267,7 @@
     progress.value = audio.currentTime || 0;
     document.querySelector('[data-time="current"]').textContent = formatTime(audio.currentTime);
     document.querySelector('[data-time="total"]').textContent = formatTime(duration);
+    progress.setAttribute("aria-valuetext", `${formatTime(audio.currentTime)} / ${formatTime(duration)}`);
   }
 
   function absolutizeContent(container, baseUrl) {
@@ -277,8 +296,12 @@
     const current = pathKey(window.location.href);
     document.querySelectorAll(".mizu-nav a").forEach(link => {
       const isHome = link.dataset.nav === "home" && current === rootPath.toLowerCase();
-      const isAlbum = !link.dataset.nav && pathKey(link.href) === current;
-      link.classList.toggle("active", isHome || isAlbum);
+      const linkPath = pathKey(link.href);
+      const isAlbum = !link.dataset.nav && (current === linkPath || current.startsWith(linkPath));
+      const isActive = isHome || isAlbum;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
     });
   }
 
@@ -287,8 +310,11 @@
 
     const tracks = Array.from(document.querySelectorAll("#content .track"));
     const isHome = pathKey(window.location.href) === rootPath.toLowerCase();
+    const isAlbum = Boolean(tracks.length && document.querySelector("#content .page_more .release_info"));
+    const isTrackDetail = Boolean(tracks.length && !isAlbum);
     document.body.classList.toggle("mizu-home", isHome);
-    document.body.classList.toggle("mizu-release", tracks.length > 0);
+    document.body.classList.toggle("mizu-release", isAlbum);
+    document.body.classList.toggle("mizu-track-detail", isTrackDetail);
 
     if (isHome) {
       const grid = document.querySelector("#content .page_grid > div");
@@ -331,18 +357,20 @@
       }
     }
 
-    if (tracks.length) {
+    document.querySelectorAll("#content .track_playback").forEach(button => button.setAttribute("tabindex", "0"));
+
+    if (isAlbum) {
       const abstract = document.querySelector("#content .page_split .abstract");
       if (abstract && !abstract.querySelector(".mizu-eyebrow")) {
         const eyebrow = document.createElement("div");
         eyebrow.className = "mizu-eyebrow";
-        eyebrow.textContent = "专辑 · 2026";
+        eyebrow.textContent = "专辑";
         abstract.insertBefore(eyebrow, abstract.firstChild);
 
         const totalSeconds = tracks.reduce((sum, track) => sum + (Number(track.dataset.duration) || 0), 0);
         const stats = document.createElement("div");
         stats.className = "mizu-album-stats";
-        stats.textContent = `${tracks.length} 首歌曲 · ${Math.floor(totalSeconds / 3600) ? `${Math.floor(totalSeconds / 3600)} 小时 ` : ""}${Math.round((totalSeconds % 3600) / 60)} 分钟 · 2026`;
+        stats.textContent = `${tracks.length} 首歌曲 · ${Math.floor(totalSeconds / 3600) ? `${Math.floor(totalSeconds / 3600)} 小时 ` : ""}${Math.round((totalSeconds % 3600) / 60)} 分钟`;
         abstract.appendChild(stats);
       }
 
@@ -350,22 +378,34 @@
       if (trackContainer && !trackContainer.querySelector(".mizu-track-header")) {
         const header = document.createElement("div");
         header.className = "mizu-track-header";
-        header.innerHTML = "<span>#</span><span>标题</span><span>时长</span>";
+        header.innerHTML = '<span aria-hidden="true"></span><span class="mizu-track-title-heading"><span>#</span><span>标题</span></span><span>时长</span>';
         trackContainer.insertBefore(header, trackContainer.firstChild);
       }
     }
 
     const search = document.querySelector(".mizu-search input");
     if (search) search.value = "";
+    const searchStatus = document.querySelector(".mizu-search-status");
+    if (searchStatus) searchStatus.textContent = "";
+    document.body.classList.remove("mizu-search-open", "mizu-no-results");
+    document.querySelector("[data-mobile-search]")?.setAttribute("aria-expanded", "false");
     updateActiveNavigation();
     markCurrentTrack();
   }
 
   function filterPage(query) {
     const normalized = query.trim().toLocaleLowerCase();
-    document.querySelectorAll("#content .track, #content .release").forEach(element => {
+    const items = Array.from(document.querySelectorAll("#content .track, #content .release"));
+    let visibleCount = 0;
+    items.forEach(element => {
       element.classList.toggle("mizu-hidden", Boolean(normalized && !element.textContent.toLocaleLowerCase().includes(normalized)));
+      if (!element.classList.contains("mizu-hidden")) visibleCount += 1;
     });
+    const count = document.querySelector(".mizu-section-heading > span");
+    if (count) count.textContent = normalized ? `${visibleCount} / ${items.length} 张专辑` : `${items.length} 张专辑`;
+    const status = document.querySelector(".mizu-search-status");
+    if (status) status.textContent = normalized ? `${visibleCount}/${items.length}` : "";
+    document.body.classList.toggle("mizu-no-results", Boolean(normalized && items.length && visibleCount === 0));
   }
 
   function shouldNavigate(anchor, event) {
@@ -404,6 +444,8 @@
       document.title = nextDocument.title || "Music Mizu";
       if (pushState) window.history.pushState({ mizu: true }, "", target.href);
       enhancePage();
+      currentContent.setAttribute("tabindex", "-1");
+      currentContent.focus({ preventScroll: true });
       if (shouldResumePlayback && persistentAudio.paused) {
         await persistentAudio.play().catch(() => toast("点击播放以继续聆听"));
       }
@@ -428,6 +470,24 @@
 
     document.addEventListener("click", event => {
       const target = event.target;
+      const mobileSearchButton = target.closest?.("[data-mobile-search]");
+      if (mobileSearchButton) {
+        const willOpen = !document.body.classList.contains("mizu-search-open");
+        document.body.classList.toggle("mizu-search-open", willOpen);
+        mobileSearchButton.setAttribute("aria-expanded", String(willOpen));
+        if (willOpen) document.querySelector(".mizu-search input")?.focus();
+        return;
+      }
+
+      const coverLink = target.closest?.(".cover a.image");
+      const coverOverlay = document.querySelector("#content dialog#overlay");
+      if (coverLink && coverOverlay && typeof coverOverlay.showModal === "function") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        coverOverlay.showModal();
+        return;
+      }
+
       const trackButton = target.closest?.(".track_playback");
       if (trackButton) {
         event.preventDefault();
@@ -436,6 +496,10 @@
         const element = trackButton.closest(".track");
         const nextQueue = elements.map(trackFromElement).filter(track => track.src);
         const selected = nextQueue.findIndex(track => track.element === element);
+        if (selected >= 0 && currentTrack && nextQueue[selected].src === currentTrack.src) {
+          togglePlayback();
+          return;
+        }
         playTrack(selected < 0 ? 0 : selected, nextQueue);
         return;
       }
@@ -491,18 +555,30 @@
         event.preventDefault();
         togglePlayback();
       }
+      if (event.key === "Escape" && document.body.classList.contains("mizu-search-open")) {
+        document.body.classList.remove("mizu-search-open");
+        const mobileSearch = document.querySelector("[data-mobile-search]");
+        mobileSearch?.setAttribute("aria-expanded", "false");
+        document.querySelector(".mizu-search input")?.blur();
+        mobileSearch?.focus();
+      }
     });
 
     window.addEventListener("popstate", () => navigate(window.location.href, false));
 
     if ("mediaSession" in navigator) {
-      navigator.mediaSession.setActionHandler("play", togglePlayback);
-      navigator.mediaSession.setActionHandler("pause", togglePlayback);
-      navigator.mediaSession.setActionHandler("previoustrack", () => playAdjacent(-1));
-      navigator.mediaSession.setActionHandler("nexttrack", () => playAdjacent(1));
+      [
+        ["play", togglePlayback],
+        ["pause", togglePlayback],
+        ["previoustrack", () => playAdjacent(-1)],
+        ["nexttrack", () => playAdjacent(1)]
+      ].forEach(([action, handler]) => {
+        try { navigator.mediaSession.setActionHandler(action, handler); } catch (_) { /* Unsupported action. */ }
+      });
     }
   }
 
+  absolutizeContent(document.querySelector("footer"), window.location.href);
   createMascotLayer();
   createSidebar();
   createToolbar();
