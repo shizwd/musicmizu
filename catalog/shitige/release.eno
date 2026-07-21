@@ -1,0 +1,23 @@
+title: 史替え歌
+permalink: shitige
+date: 2026-07-21
+release_artist: 十字_zwd&里森堡贸易中心
+release_download_access: disabled
+track_download_access: disabled
+track_numbering: arabic-dotted
+more_label: 专辑说明
+
+-- synopsis
+由十字_zwd与里森堡贸易中心制作的史替え歌合集，共 6 首。
+-- synopsis
+
+-- more
+曲序沿用压缩包中的 01–06 编号。音频保持原始 MP3 编码，曲名、演唱者与年份标签均予以保留。
+-- more
+
+theme:
+accent_hue = 326
+accent_chroma = 82
+accent_brightening = 72
+round_corners = enabled
+waveforms = absolute
