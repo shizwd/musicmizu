@@ -33,7 +33,7 @@ Independent sounds, flowing freely.
 
 这是一个由 [Faircamp](https://faircamp.org/) 驱动的独立音乐站。没有广告、没有追踪，也不需要账号；你可以直接试听和下载音乐。
 
-当前曲目为项目自带的原创合成示例，用于确认播放器、波形与下载流程均可工作。发布前，请将 `catalog/memory-of-water/` 中的示例文件替换成你自己的音频与封面。
+站内包含原创合成示例专辑《水之记忆》，以及由视频音轨制作的音符盒专辑《Noteblock》，用于确认播放器、波形与下载流程均可工作。
 
 联系与更新：[GitHub](https://github.com/shizwd/musicmizu)
 -- more

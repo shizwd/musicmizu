@@ -1,0 +1,26 @@
+title: Noteblock
+permalink: noteblock
+date: 2026-07-21
+release_artist: Music Mizu
+cover:
+description = Minecraft 音符盒演奏场景，音符盒方阵延伸至画面中央
+file = cover.jpg
+release_downloads: mp3
+track_downloads: mp3
+track_numbering: arabic-dotted
+more_label: 专辑说明
+
+-- synopsis
+以 Minecraft 音符盒演奏与记录的音乐作品。
+-- synopsis
+
+-- more
+首曲《真夜中のドア / Stay With Me》由视频录音转换为高质量 MP3，并保留完整曲名、专辑名与曲序标签。
+-- more
+
+theme:
+accent_hue = 128
+accent_chroma = 72
+accent_brightening = 70
+round_corners = enabled
+

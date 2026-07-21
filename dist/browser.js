@@ -6,7 +6,7 @@ const BROWSER_JS_T = {
 };
 const LABEL_MODE = false;
 const ARTISTS = [];
-const RELEASES = [{cover:'cover_159.jpg?8oxz4kM_lF8',title:'水之记忆 / Memory of Water',tracks:[{number:'1.',title:'潮汐记忆 / Tidal Memory',url:'memory-of-water/1/'},{number:'2.',title:'月下回声 / Lunar Echo',url:'memory-of-water/2/'}],url:'memory-of-water/'}];
+const RELEASES = [{cover:'cover_160.jpg?UtlqF0VzBmY',title:'Noteblock',tracks:[{number:'1.',title:'真夜中のドア / Stay With Me',url:'noteblock/1/'}],url:'noteblock/'},{cover:'cover_159.jpg?8oxz4kM_lF8',title:'水之记忆 / Memory of Water',tracks:[{number:'1.',title:'潮汐记忆 / Tidal Memory',url:'memory-of-water/1/'},{number:'2.',title:'月下回声 / Lunar Echo',url:'memory-of-water/2/'}],url:'memory-of-water/'}];
 const browser = document.querySelector('#browser');
 const browseButtonFooter = document.querySelector('footer button.browse');
 const browseButtonHeader = document.querySelector('header button.browse');
