@@ -20,6 +20,11 @@
     "kusanagi-nene-wonderlands-showtime": "草薙宁宁 · Wonderlands×Showtime"
   };
 
+  const trackCoverCounts = {
+    "projectmili": 13,
+    "kusanagi-nene-wonderlands-showtime": 25
+  };
+
   const originalLogo = document.querySelector("#logo");
   const siteRoot = new URL(originalLogo ? originalLogo.getAttribute("href") : "./", window.location.href);
   const normalizePath = path => {
@@ -37,6 +42,31 @@
   const pathFor = slug => new URL(slug ? `${slug}/` : "./", siteRoot).href;
   const assetFor = name => new URL(name, siteRoot).href;
   const pathKey = url => normalizePath(new URL(url, window.location.href).pathname).toLowerCase();
+
+  function applyTrackCovers(tracks) {
+    const pathname = new URL(window.location.href).pathname;
+    const relativePath = pathname.toLowerCase().startsWith(rootPath.toLowerCase())
+      ? pathname.slice(rootPath.length)
+      : pathname.replace(/^\/+/, "");
+    const pathSegments = relativePath.split("/").filter(Boolean);
+    const albumSlug = pathSegments[0]?.toLowerCase();
+    const coverCount = trackCoverCounts[albumSlug];
+    if (!coverCount) return;
+
+    const detailTrackNumber = /^\d+$/.test(pathSegments[1] || "") ? Number(pathSegments[1]) : 0;
+    tracks.forEach((track, index) => {
+      const listedNumber = Number.parseInt(track.querySelector(".number")?.textContent || "", 10);
+      const trackNumber = detailTrackNumber || listedNumber || index + 1;
+      if (trackNumber < 1 || trackNumber > coverCount) return;
+
+      const cover = track.querySelector(".track_playback img");
+      if (!cover) return;
+      cover.removeAttribute("srcset");
+      cover.src = assetFor(`track-covers/${albumSlug}/${String(trackNumber).padStart(2, "0")}.jpg`);
+      cover.alt = "";
+      cover.setAttribute("aria-hidden", "true");
+    });
+  }
 
   function createMascotLayer() {
     const standee = document.createElement("img");
@@ -127,6 +157,12 @@
     return `${minutes}:${remainder}`;
   }
 
+  function updateRangeFill(input, value, maximum = 1) {
+    if (!input) return;
+    const ratio = maximum > 0 ? Math.min(1, Math.max(0, value / maximum)) : 0;
+    input.style.setProperty("--mizu-range-value", `${ratio * 100}%`);
+  }
+
   function trackFromElement(element) {
     const nativeAudio = element.querySelector("audio");
     const sources = Array.from(nativeAudio ? nativeAudio.querySelectorAll("source") : []);
@@ -181,7 +217,7 @@
       title.textContent = currentTrack.title;
       artist.textContent = `${currentTrack.artist} — ${currentTrack.album}`;
       art.src = currentTrack.cover;
-      art.alt = `${currentTrack.album} 封面`;
+      art.alt = `${currentTrack.title} 封面`;
       playButton.disabled = false;
       previous.disabled = false;
       next.disabled = false;
@@ -265,6 +301,7 @@
     const duration = Number.isFinite(audio.duration) ? audio.duration : currentTrack?.duration || 0;
     progress.max = duration;
     progress.value = audio.currentTime || 0;
+    updateRangeFill(progress, audio.currentTime || 0, duration);
     document.querySelector('[data-time="current"]').textContent = formatTime(audio.currentTime);
     document.querySelector('[data-time="total"]').textContent = formatTime(duration);
     progress.setAttribute("aria-valuetext", `${formatTime(audio.currentTime)} / ${formatTime(duration)}`);
@@ -312,6 +349,7 @@
     const isHome = pathKey(window.location.href) === rootPath.toLowerCase();
     const isAlbum = Boolean(tracks.length && document.querySelector("#content .page_more .release_info"));
     const isTrackDetail = Boolean(tracks.length && !isAlbum);
+    applyTrackCovers(tracks);
     document.body.classList.toggle("mizu-home", isHome);
     document.body.classList.toggle("mizu-release", isAlbum);
     document.body.classList.toggle("mizu-track-detail", isTrackDetail);
@@ -541,8 +579,14 @@
 
     document.addEventListener("input", event => {
       if (event.target.matches(".mizu-search input")) filterPage(event.target.value);
-      if (event.target.matches('[data-player="progress"]')) audio.currentTime = Number(event.target.value);
-      if (event.target.matches('[data-player="volume"]')) audio.volume = Number(event.target.value);
+      if (event.target.matches('[data-player="progress"]')) {
+        audio.currentTime = Number(event.target.value);
+        updateRangeFill(event.target, Number(event.target.value), Number(event.target.max));
+      }
+      if (event.target.matches('[data-player="volume"]')) {
+        audio.volume = Number(event.target.value);
+        updateRangeFill(event.target, Number(event.target.value));
+      }
     });
 
     document.addEventListener("keydown", event => {
@@ -582,6 +626,7 @@
   createMascotLayer();
   createSidebar();
   createToolbar();
+  updateRangeFill(document.querySelector('[data-player="volume"]'), 0.9);
   bindEvents();
   enhancePage();
 })();

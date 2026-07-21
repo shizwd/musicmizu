@@ -23,6 +23,12 @@ if ($LASTEXITCODE -ne 0) {
 # Music Mizu owns playback and persists its audio element across page changes.
 # Remove Faircamp's second player runtime to avoid duplicate observers and controls.
 $buildDir = Join-Path $projectRoot 'dist'
+$trackCoverSource = Join-Path $projectRoot 'assets\track-covers'
+$trackCoverDestination = Join-Path $buildDir 'track-covers'
+if (Test-Path $trackCoverSource) {
+    New-Item -ItemType Directory -Force -Path $trackCoverDestination | Out-Null
+    Copy-Item -Path (Join-Path $trackCoverSource '*') -Destination $trackCoverDestination -Recurse -Force
+}
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 Get-ChildItem -Path $buildDir -Filter '*.html' -Recurse | ForEach-Object {
     $html = [System.IO.File]::ReadAllText($_.FullName)
