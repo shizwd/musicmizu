@@ -1,0 +1,27 @@
+title: 草薙宁宁（Wonderlands✕Showtime）
+permalink: kusanagi-nene-wonderlands-showtime
+date: 2026-07-21
+release_artist: 草薙宁宁（Wonderlands✕Showtime）
+cover:
+description = Wonderlands×Showtime SEKAI ALBUM vol.2 彩色角色合辑封面
+file = cover.jpg
+release_download_access: disabled
+track_download_access: disabled
+track_numbering: arabic-dotted
+more_label: 专辑说明
+
+-- synopsis
+Wonderlands✕Showtime 作品合集，共 25 首。
+-- synopsis
+
+-- more
+曲序按照桌面 FLAC 文件的下载时间（Windows 文件创建时间）从早到晚排列。所有音频保持 FLAC 无损编码，原始曲名与演唱者标签均予以保留。
+-- more
+
+theme:
+accent_hue = 326
+accent_chroma = 82
+accent_brightening = 72
+round_corners = enabled
+waveforms = absolute
+

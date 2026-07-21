@@ -2,7 +2,7 @@
 
 一个由 [Faircamp](https://faircamp.org/) 生成的独立音乐站，可直接部署到腾讯 EdgeOne Pages，并通过 GitHub Pages 在上线前预览。
 
-站点包含《水之记忆》和《Noteblock》两张专辑，并提供可播放音频、波形、封面与下载。《水之记忆》的示例音频为程序化合成，不含第三方版权素材。
+站点包含《水之记忆》《Noteblock》和《草薙宁宁（Wonderlands✕Showtime）》三张专辑，并提供可播放音频、波形与封面。《水之记忆》的示例音频为程序化合成，不含第三方版权素材。
 
 ## 本地预览
 
