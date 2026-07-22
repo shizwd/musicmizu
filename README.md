@@ -2,7 +2,7 @@
 
 一个由 [Faircamp](https://faircamp.org/) 生成的独立音乐站，可直接部署到腾讯 EdgeOne Pages，并通过 GitHub Pages 在上线前预览。
 
-站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》《ProjectMili》《史替え歌》和《中考行进》五张专辑。界面采用以实用为先的高信息密度音乐资料库布局，提供固定侧栏、专辑曲目表格、页面搜索、媒体键支持和全局播放器。
+站点包含《Noteblock》《草薙宁宁（Wonderlands✕Showtime）》《ProjectMili》《史替え歌》《中考行进》《乌云典当记》和《含哉の美妙嗓音》七张专辑。界面采用以实用为先的高信息密度音乐资料库布局，提供固定侧栏、专辑曲目表格、页面搜索、媒体键支持和全局播放器。
 
 站内导航使用局部页面切换：播放中的音频节点不会随专辑或首页内容一起重载，因此切换页面时音乐和进度会连续保留。
 
@@ -79,6 +79,8 @@ catalog/                  Faircamp 音乐与站点配置
   projectmili/            Mili 作品合集
   shitige/                史替え歌合集
   zhongkao-xingjin/       中考行进
+  wuyun-diandangji/       乌云典当记
+  hanzai-voice/           含哉の美妙嗓音
 dist/                     已构建、可直接部署的静态站点
 scripts/                  本地构建脚本
 .github/workflows/        GitHub Pages 预览工作流
