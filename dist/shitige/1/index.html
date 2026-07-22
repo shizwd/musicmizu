@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <link href="../../theme-w8gTKBBptJI.css?q-gEiHELa_U" rel="stylesheet">
         <link href="../../site.css?GksmXEGc4rY" rel="stylesheet">
-        <script defer src="../../browser.js?uWlIE8MZjNQ"></script>
+        <script defer src="../../browser.js?1xQqLM4NZyA"></script>
         <script defer src="../../clipboard.js?9tQlZCHBje0"></script>
 <link href="../../favicon.png?dwV63GoaSRI" rel="icon">
 <meta name="description" content="Music Mizu：由潮汐档案员澪音看守的个人音乐站。">
@@ -18,8 +18,8 @@
 <meta property="og:title" content="Music Mizu — 澪音的潮汐档案">
 <meta property="og:description" content="澪音把散落的旋律收进水层，替你整理这一座个人音乐库。">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../../custom.css?bV5eflm2pZw">
-<script defer src="../../custom.js?CiSSjl1CDrs"></script>
+<link rel="stylesheet" href="../../custom.css?zKghpXiqVcQ">
+<script defer src="../../custom.js?_K3DjUTfacs"></script>
 
     </head>
     <body>
@@ -49,19 +49,41 @@
             <main id="content">
                 <div class="page">
     <div class="page_split">
-        <div class="cover"><span aria-hidden="true" class="image">
+        <div class="cover"><a class="image" href="../cover_480.jpg?_ci1GwSqQfI" target="_blank">
     <img
-        class="procedural"
+        alt="由十字_zwd与里森堡贸易中心制作的史替え歌"
+        sizes="(min-width: 20rem) 20rem, calc(100vw - 2rem)"
+        src="../cover_480.jpg?_ci1GwSqQfI"
+        srcset="../cover_160.jpg?_ci1GwSqQfI 160w,../cover_320.jpg?_ci1GwSqQfI 320w,../cover_480.jpg?_ci1GwSqQfI 480w">
+</a>
+
+<dialog id="overlay">
+    <form method="dialog">
+        <button aria-label="Close"></button>
+    </form>
+    <img
+        alt="由十字_zwd与里森堡贸易中心制作的史替え歌"
+        height="1280"
         loading="lazy"
-        sizes="
-            (min-width: 60rem) 20rem,
-            (min-width: 30rem) calc((100vw - 4rem) * 0.333),
-            (min-width: 15rem) calc((100vw - 3rem) * 0.5),
-            calc(100vw - 2rem)
-        "
-        src="../cover_720.png?0bHd1OefOFI"
-        srcset="../cover_120.png?0bHd1OefOFI 120w,../cover_240.png?0bHd1OefOFI 240w,../cover_480.png?0bHd1OefOFI 480w,../cover_720.png?0bHd1OefOFI 720w">
-</span>
+        sizes="calc(100vmin - 4rem)"
+        src="../cover_1280.jpg?_ci1GwSqQfI"
+        srcset="../cover_160.jpg?_ci1GwSqQfI 160w,../cover_320.jpg?_ci1GwSqQfI 320w,../cover_480.jpg?_ci1GwSqQfI 480w,../cover_800.jpg?_ci1GwSqQfI 800w,../cover_1280.jpg?_ci1GwSqQfI 1280w"
+        width="1280">
+</dialog>
+<script>
+    const overlay = document.querySelector('dialog#overlay');
+    const thumbnailButton = document.querySelector('a.image');
+
+    overlay.addEventListener('click', () => {
+        overlay.close();
+    });
+
+    thumbnailButton.addEventListener('click', event => {
+        overlay.showModal();
+        event.preventDefault();
+    });
+</script>
+
 </div>
         <div class="abstract">
             <h1>
@@ -69,7 +91,7 @@
                 【赤羽/纳粹德国】存活千年
                 <!-- TODO: Unlisted badge -->
             </h1>
-            <div class="release_artists">赤羽</div>
+            <div class="release_artists">赤羽, 十字_zwd, 里森堡贸易中心</div>
             <div class="actions primary">
     <button class="emphasized listen">
     <span class="icon"><svg width="1em" height="1em" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +131,7 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="../cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="../cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
@@ -127,8 +149,8 @@
 </div>
 
         <audio controls preload="none">
-            <source src="opus-96/0Pd1dNgXcUQ/01%20%E8%B5%A4%E7%BE%BD%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.opus" type="audio/ogg; codecs=opus">
-<source src="mp3-v5/Ad1j-RClgVg/01%20%E8%B5%A4%E7%BE%BD%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.mp3" type="audio/mpeg">
+            <source src="opus-96/jSjerUzsFME/01%20%E8%B5%A4%E7%BE%BD%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.opus" type="audio/ogg; codecs=opus">
+<source src="mp3-v5/Ad0DVgZ_nbM/01%20%E8%B5%A4%E7%BE%BD%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.mp3" type="audio/mpeg">
         </audio>
     </div>
     </span>

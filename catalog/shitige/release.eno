@@ -2,6 +2,9 @@ title: 史替え歌
 permalink: shitige
 date: 2026-07-21
 release_artist: 十字_zwd&里森堡贸易中心
+cover:
+description = 由十字_zwd与里森堡贸易中心制作的史替え歌
+file = cover.png
 release_download_access: disabled
 track_download_access: disabled
 track_numbering: arabic-dotted

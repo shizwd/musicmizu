@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <link href="../theme-w8gTKBBptJI.css?q-gEiHELa_U" rel="stylesheet">
         <link href="../site.css?GksmXEGc4rY" rel="stylesheet">
-        <script defer src="../browser.js?uWlIE8MZjNQ"></script>
+        <script defer src="../browser.js?1xQqLM4NZyA"></script>
         <script defer src="../clipboard.js?9tQlZCHBje0"></script>
 <link href="../favicon.png?dwV63GoaSRI" rel="icon">
 <meta name="description" content="Music Mizu：由潮汐档案员澪音看守的个人音乐站。">
@@ -18,8 +18,8 @@
 <meta property="og:title" content="Music Mizu — 澪音的潮汐档案">
 <meta property="og:description" content="澪音把散落的旋律收进水层，替你整理这一座个人音乐库。">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../custom.css?bV5eflm2pZw">
-<script defer src="../custom.js?CiSSjl1CDrs"></script>
+<link rel="stylesheet" href="../custom.css?zKghpXiqVcQ">
+<script defer src="../custom.js?_K3DjUTfacs"></script>
 
     </head>
     <body>
@@ -49,19 +49,41 @@
             <main id="content">
                 <div class="page">
     <div class="page_split">
-        <div class="cover"><span aria-hidden="true" class="image">
+        <div class="cover"><a class="image" href="cover_480.jpg?_ci1GwSqQfI" target="_blank">
     <img
-        class="procedural"
+        alt="由十字_zwd与里森堡贸易中心制作的史替え歌"
+        sizes="(min-width: 20rem) 20rem, calc(100vw - 2rem)"
+        src="cover_480.jpg?_ci1GwSqQfI"
+        srcset="cover_160.jpg?_ci1GwSqQfI 160w,cover_320.jpg?_ci1GwSqQfI 320w,cover_480.jpg?_ci1GwSqQfI 480w">
+</a>
+
+<dialog id="overlay">
+    <form method="dialog">
+        <button aria-label="Close"></button>
+    </form>
+    <img
+        alt="由十字_zwd与里森堡贸易中心制作的史替え歌"
+        height="1280"
         loading="lazy"
-        sizes="
-            (min-width: 60rem) 20rem,
-            (min-width: 30rem) calc((100vw - 4rem) * 0.333),
-            (min-width: 15rem) calc((100vw - 3rem) * 0.5),
-            calc(100vw - 2rem)
-        "
-        src="cover_720.png?0bHd1OefOFI"
-        srcset="cover_120.png?0bHd1OefOFI 120w,cover_240.png?0bHd1OefOFI 240w,cover_480.png?0bHd1OefOFI 480w,cover_720.png?0bHd1OefOFI 720w">
-</span>
+        sizes="calc(100vmin - 4rem)"
+        src="cover_1280.jpg?_ci1GwSqQfI"
+        srcset="cover_160.jpg?_ci1GwSqQfI 160w,cover_320.jpg?_ci1GwSqQfI 320w,cover_480.jpg?_ci1GwSqQfI 480w,cover_800.jpg?_ci1GwSqQfI 800w,cover_1280.jpg?_ci1GwSqQfI 1280w"
+        width="1280">
+</dialog>
+<script>
+    const overlay = document.querySelector('dialog#overlay');
+    const thumbnailButton = document.querySelector('a.image');
+
+    overlay.addEventListener('click', () => {
+        overlay.close();
+    });
+
+    thumbnailButton.addEventListener('click', event => {
+        overlay.showModal();
+        event.preventDefault();
+    });
+</script>
+
 </div>
         <div class="abstract">
             <h1>史替え歌</h1>
@@ -95,7 +117,7 @@
 </div>
 <div class="page">
     <div class="page_center">
-        <div class="tall tracks" data-longest-duration="470.43918" data-disable-relative-waveforms >
+        <div class="tall tracks" data-longest-duration="348.70856" data-disable-relative-waveforms >
             <div class="track" data-duration="200.01959">
     <button class="track_playback" tabindex="-1">
         <span class="icon">
@@ -105,14 +127,14 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">1.</span>
             <a class="title" href="1/">【赤羽/纳粹德国】存活千年</a>
         </div>
-        <div class="artists">赤羽</div>
+        <div class="artists">赤羽, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
     <svg data-peaks="edYXYdYXoUfWkgbajmxozq1kqi1krh7hquwtrnvrfrqqakrwpyirnxepntplwromviqmtkspwmofrr1svs43wzw63y564ztvr6wqvq4zu2801usgngvlkbukla2dngwfnprjcpiZlffeqqhjmwsqpsrnm+juvknisorhssbcdboolqmnkqpookmonnrnmprnppllnlopqUXbW3yzytys9t810x8641ts/0w4zzupr33qx2tur3so4v0wxsmv7wxtz43zw9zss13VTl7QRPSQSQQQQPQPPPPPOPMOLLMMMGCBAAAAAAAAAAAAAAAAAAA">
     <path class="seek"/>
@@ -125,8 +147,8 @@
 </div>
 
         <audio controls preload="none">
-            <source src="1/opus-96/0Pd1dNgXcUQ/01%20%E8%B5%A4%E7%BE%BD%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.opus" type="audio/ogg; codecs=opus">
-<source src="1/mp3-v5/Ad1j-RClgVg/01%20%E8%B5%A4%E7%BE%BD%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.mp3" type="audio/mpeg">
+            <source src="1/opus-96/jSjerUzsFME/01%20%E8%B5%A4%E7%BE%BD%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.opus" type="audio/ogg; codecs=opus">
+<source src="1/mp3-v5/Ad0DVgZ_nbM/01%20%E8%B5%A4%E7%BE%BD%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E8%B5%A4%E7%BE%BD%E7%BA%B3%E7%B2%B9%E5%BE%B7%E5%9B%BD%E3%80%91%E5%AD%98%E6%B4%BB%E5%8D%83%E5%B9%B4.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
@@ -143,14 +165,14 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">2.</span>
             <a class="title" href="2/">【洛天依/美国/特朗普】特朗普的随波逐流</a>
         </div>
-        <div class="artists">洛天依</div>
+        <div class="artists">洛天依, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
     <svg data-peaks="BGKKLKJPIMTQTSSSTWVSRRTSSUYVUacaVTSTcXgkhiXWThgleYaXWZWZihpgZyfrhdctdk9a8ddieacbjcyz8XUdajiiigknlidevghhmjjojlohiwighfjedh6kPccTaZXUYYggddWXVeWgbabYZadZgeicYbcdYgZfmczShdicgfihWg1tiVbbguhkjcgqmioflhgfkglmclgchnfhlfilcdfrqifdcjjdbdegohbUnghWRZSogibRdliYgcdXUfheglYgffirhhkfdnjocpvwstnpz2nvspvoxpkqutqwmtvznqpnoowuVJAAAAA">
     <path class="seek"/>
@@ -163,8 +185,8 @@
 </div>
 
         <audio controls preload="none">
-            <source src="2/opus-96/JwybuOp-ouI/02%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E7%BE%8E%E5%9B%BD%E7%89%B9%E6%9C%97%E6%99%AE%E3%80%91%E7%89%B9%E6%9C%97%E6%99%AE%E7%9A%84%E9%9A%8F%E6%B3%A2%E9%80%90%E6%B5%81.opus" type="audio/ogg; codecs=opus">
-<source src="2/mp3-v5/OC6-_ihL_Xk/02%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E7%BE%8E%E5%9B%BD%E7%89%B9%E6%9C%97%E6%99%AE%E3%80%91%E7%89%B9%E6%9C%97%E6%99%AE%E7%9A%84%E9%9A%8F%E6%B3%A2%E9%80%90%E6%B5%81.mp3" type="audio/mpeg">
+            <source src="2/opus-96/vz547BDjKF0/02%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E7%BE%8E%E5%9B%BD%E7%89%B9%E6%9C%97%E6%99%AE%E3%80%91%E7%89%B9%E6%9C%97%E6%99%AE%E7%9A%84%E9%9A%8F%E6%B3%A2%E9%80%90%E6%B5%81.opus" type="audio/ogg; codecs=opus">
+<source src="2/mp3-v5/-e5Aoxosv8E/02%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E7%BE%8E%E5%9B%BD%E7%89%B9%E6%9C%97%E6%99%AE%E3%80%91%E7%89%B9%E6%9C%97%E6%99%AE%E7%9A%84%E9%9A%8F%E6%B3%A2%E9%80%90%E6%B5%81.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
@@ -172,7 +194,7 @@
     </div>
 </div>
 
-<div class="track" data-duration="470.43918">
+<div class="track" data-duration="200.7249">
     <button class="track_playback" tabindex="-1">
         <span class="icon">
             <svg width="1em" height="1em" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -181,32 +203,32 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">3.</span>
             <a class="title" href="3/">【洛天依/中国东北】幽灵东北</a>
         </div>
-        <div class="artists">洛天依</div>
+        <div class="artists">洛天依, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
-    <svg data-peaks="BEFFFFFFFFFFIIKHKJJIJIJFFFFHIIJIKKJKIIHIHMJJJHJPJKLKLMNLIMJGJJFFFFFFFFFFGJJJJKJJJIKKJKOMMHIJJDEDJJDEGDFHHIHHFEEFFGMKJLMMJMIIHKYSFFFFFFJGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+    <svg data-peaks="ADFJKIJJIKKJJKLKKJJJJJKJKKJLRNORPRUQOQTTPUORUPMSSORQTNJJJJJKJKKJKUNPQQPSUMRWRTRRTQURQSNORPQMRPLOTXTOXSPPUPNOTPXiQWOMWVRbPQZTWWcVYYUQPRcQOUPKKPTUNMKJJJIKLIJKKJKJJJJJKJJKJKNORXPOVQOSUSQTPTSORTQOLbSQVRPQVTWjVWZYQNOUOPTRYIFRORKZeXXclJRZNPjZRbcNVPLNNMNROKOOMJJHIJHKIKIKLMKeQQYPOUSRYdTXWTTNXWQORPLKRSVav3uPJJJKJJJKKKIKKIKSVQB">
     <path class="seek"/>
     <path class="playback"/>
     <path class="base"/>
 </svg>
 
-    <input aria-label="Playback position" aria-valuetext="" autocomplete="off" max="470.43918" min="0" step="any" type="range" value="0">
+    <input aria-label="Playback position" aria-valuetext="" autocomplete="off" max="200.7249" min="0" step="any" type="range" value="0">
     <div class="decoration"></div>
 </div>
 
         <audio controls preload="none">
-            <source src="3/opus-96/VXhYFLxYLQI/03%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E3%80%91%E5%B9%BD%E7%81%B5%E4%B8%9C%E5%8C%97.opus" type="audio/ogg; codecs=opus">
-<source src="3/mp3-v5/r_RKDHvQwXw/03%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E3%80%91%E5%B9%BD%E7%81%B5%E4%B8%9C%E5%8C%97.mp3" type="audio/mpeg">
+            <source src="3/opus-96/9GMByRZvKmk/03%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E3%80%91%E5%B9%BD%E7%81%B5%E4%B8%9C%E5%8C%97.opus" type="audio/ogg; codecs=opus">
+<source src="3/mp3-v5/DjVY0PGlnbw/03%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E5%9B%BD%E4%B8%9C%E5%8C%97%E3%80%91%E5%B9%BD%E7%81%B5%E4%B8%9C%E5%8C%97.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
-         <span class="time">7:50</span>
+         <span class="time">3:20</span>
     </div>
 </div>
 
@@ -219,14 +241,14 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">4.</span>
             <a class="title" href="4/">【洛天依/冷战东西德】被世界所厌恶。</a>
         </div>
-        <div class="artists">洛天依</div>
+        <div class="artists">洛天依, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
     <svg data-peaks="ACBCCBBBBBCAHHHHGGHHHHFGWSPYQNSTRQQURPUVRRTSPHRWSURVTSTUSWUXXTVYVYUUbZldddVbhkfcZYcefWcaZbZMHGGFGHGHGFMVZRYTWTUXWPWWVZURWQWTRWUUTVQUUUWXVWVVTUYUTOMQUUWXVVXYaeZWTWVZdTVYVYbVXbkabfYcaZVYdecaadbdMDDDDDDDDCDNSfcXWSQQWZOSbXXWYXRhdgXVZahhVZYd4YfgTdcWbeefYdhXhnahheac9WNOQQNNOOQPNONQRONOOPPGGGGFGGGGGGFGGGGGFFGFGHGFGGGGGFFGCAA">
     <path class="seek"/>
@@ -239,8 +261,8 @@
 </div>
 
         <audio controls preload="none">
-            <source src="4/opus-96/aV5T3U7FWB0/04%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E5%86%B7%E6%88%98%E4%B8%9C%E8%A5%BF%E5%BE%B7%E3%80%91%E8%A2%AB%E4%B8%96%E7%95%8C%E6%89%80%E5%8E%8C%E6%81%B6%E3%80%82.opus" type="audio/ogg; codecs=opus">
-<source src="4/mp3-v5/bJRAAV_Xgeo/04%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E5%86%B7%E6%88%98%E4%B8%9C%E8%A5%BF%E5%BE%B7%E3%80%91%E8%A2%AB%E4%B8%96%E7%95%8C%E6%89%80%E5%8E%8C%E6%81%B6%E3%80%82.mp3" type="audio/mpeg">
+            <source src="4/opus-96/xnNKfGK70wQ/04%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E5%86%B7%E6%88%98%E4%B8%9C%E8%A5%BF%E5%BE%B7%E3%80%91%E8%A2%AB%E4%B8%96%E7%95%8C%E6%89%80%E5%8E%8C%E6%81%B6%E3%80%82.opus" type="audio/ogg; codecs=opus">
+<source src="4/mp3-v5/0sfenPFOHMc/04%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E5%86%B7%E6%88%98%E4%B8%9C%E8%A5%BF%E5%BE%B7%E3%80%91%E8%A2%AB%E4%B8%96%E7%95%8C%E6%89%80%E5%8E%8C%E6%81%B6%E3%80%82.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
@@ -257,14 +279,14 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">5.</span>
             <a class="title" href="5/">【洛天依/苏联】说谎的苏维埃</a>
         </div>
-        <div class="artists">洛天依</div>
+        <div class="artists">洛天依, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
     <svg data-peaks="AAACLOMQJJMRLOMVLKKSgbcYSXXaVVZciX9oceXYWZeYbYkWbYgDkgfYbabVnbeaYeefkaeanadZafZeRZYcZaOVOQSQLLQQNQSVNLQMbWTXXYVRVZkYyjmgZSYdleRSWffSoj1XZZeeTaZPeZWTghbZlYqZlYhXbhuaXbiflbnbbYiVacTbPbQbbaNUNNMNNOONMMNPPNPNaXUUUQNTeRTVUWSLbXaTTTcwbiTXccjcBBsejbcccblodWddXXcdYaYbiYcXWgTjUbhcNcNRRQKLQRMQRWWgbd7452vtWdebhsjarR272mAAAAAAAAA">
     <path class="seek"/>
@@ -277,8 +299,8 @@
 </div>
 
         <audio controls preload="none">
-            <source src="5/opus-96/OQweDPj8I1g/05%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E8%8B%8F%E8%81%94%E3%80%91%E8%AF%B4%E8%B0%8E%E7%9A%84%E8%8B%8F%E7%BB%B4%E5%9F%83.opus" type="audio/ogg; codecs=opus">
-<source src="5/mp3-v5/ToI3dYynQMA/05%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E8%8B%8F%E8%81%94%E3%80%91%E8%AF%B4%E8%B0%8E%E7%9A%84%E8%8B%8F%E7%BB%B4%E5%9F%83.mp3" type="audio/mpeg">
+            <source src="5/opus-96/cKgeCDUFe-g/05%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E8%8B%8F%E8%81%94%E3%80%91%E8%AF%B4%E8%B0%8E%E7%9A%84%E8%8B%8F%E7%BB%B4%E5%9F%83.opus" type="audio/ogg; codecs=opus">
+<source src="5/mp3-v5/XoWlqWVwBnI/05%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E8%8B%8F%E8%81%94%E3%80%91%E8%AF%B4%E8%B0%8E%E7%9A%84%E8%8B%8F%E7%BB%B4%E5%9F%83.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
@@ -295,14 +317,14 @@
 </svg>
 
         </span>
-        <img aria-hidden="true" class="procedural" src="cover_120.png?0bHd1OefOFI">
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
     </button>
     <div>
         <div>
             <span class="number">6.</span>
             <a class="title" href="6/">【洛天依/一战】世末歌者</a>
         </div>
-        <div class="artists">洛天依</div>
+        <div class="artists">洛天依, 十字_zwd, 里森堡贸易中心</div>
         <div class="waveform">
     <svg data-peaks="AAGMLNMMMLOPOWVZSRTVWXUjWWYUZWaXVVROSPTRRYTSWQSVUQSfTdmeaagdjaYckZdxYaimWhcfgaZccibcecZlZgfbRPQONONQOOQOQONNNOOOOOUYTSSOZXXVLWTRTOaUVWRRQVSORUPTRVQTWQUTonbZceckphgifdmangfefkgdndebgceXXftehpYbioTQifenaYjy5zamWXUYn1+bGLRQRSYVSRRUSUWXVSYURYhgdcghcaeTwhWdofcau1dimdeWhjcsXaedgkimcZQnfmbdwspwkwz197bOOOOOOOOOPPONMMLKKJIFECB">
     <path class="seek"/>
@@ -315,12 +337,88 @@
 </div>
 
         <audio controls preload="none">
-            <source src="6/opus-96/e4NoNMbxmj8/06%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%80%E6%88%98%E3%80%91%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.opus" type="audio/ogg; codecs=opus">
-<source src="6/mp3-v5/AN7xWQC5RnU/06%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%80%E6%88%98%E3%80%91%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.mp3" type="audio/mpeg">
+            <source src="6/opus-96/kjwp84vZrsg/06%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%80%E6%88%98%E3%80%91%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.opus" type="audio/ogg; codecs=opus">
+<source src="6/mp3-v5/VLcMoJohaWs/06%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%2C%20%E9%87%8C%E6%A3%AE%E5%A0%A1%E8%B4%B8%E6%98%93%E4%B8%AD%E5%BF%83%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%80%E6%88%98%E3%80%91%E4%B8%96%E6%9C%AB%E6%AD%8C%E8%80%85.mp3" type="audio/mpeg">
         </audio>
     </div>
     <div>
          <span class="time">5:21</span>
+    </div>
+</div>
+
+<div class="track" data-duration="255.11183">
+    <button class="track_playback" tabindex="-1">
+        <span class="icon">
+            <svg width="1em" height="1em" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <title>Play</title>
+    <path d="m11.116 59.677 45.476-26.453-45.544-28.093z"/>
+</svg>
+
+        </span>
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
+    </button>
+    <div>
+        <div>
+            <span class="number">7.</span>
+            <a class="title" href="7/">【洛天依/中东】圆形监狱</a>
+        </div>
+        <div class="artists">洛天依, 十字_zwd</div>
+        <div class="waveform">
+    <svg data-peaks="AnmkekniklkfjopyumjfopophfjetepqmrqopmnlspnponntpnnomotomtpmnpomtmmpoolqonpqpksmnqpnptfotrkmqkpstklnlpwnmnnYijjYKextuxvvnuwy3rs0uvxwttp3systsfVKRZPQeUSVfaOqgfofgfnienjdkZaliQuztrwvtsvoutx1tuqtwpwrprpususqrsoropoprpttqyprpsnonqqruqwyxysuwsuxv0wvxwvvuuyrtxztu0wuuwsu0z1ut1y0vv0xpyyz8zsosrnstppuspwxvrpqqrsoqsrsxywz200x03A">
+    <path class="seek"/>
+    <path class="playback"/>
+    <path class="base"/>
+</svg>
+
+    <input aria-label="Playback position" aria-valuetext="" autocomplete="off" max="255.11183" min="0" step="any" type="range" value="0">
+    <div class="decoration"></div>
+</div>
+
+        <audio controls preload="none">
+            <source src="7/opus-96/6-vBVyb_94Q/07%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E4%B8%9C%E3%80%91%E5%9C%86%E5%BD%A2%E7%9B%91%E7%8B%B1.opus" type="audio/ogg; codecs=opus">
+<source src="7/mp3-v5/kiMeKKg_zh4/07%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E4%B8%9C%E3%80%91%E5%9C%86%E5%BD%A2%E7%9B%91%E7%8B%B1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div>
+         <span class="time">4:15</span>
+    </div>
+</div>
+
+<div class="track" data-duration="348.70856">
+    <button class="track_playback" tabindex="-1">
+        <span class="icon">
+            <svg width="1em" height="1em" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <title>Play</title>
+    <path d="m11.116 59.677 45.476-26.453-45.544-28.093z"/>
+</svg>
+
+        </span>
+        <img aria-hidden="true" src="cover_160.jpg?_ci1GwSqQfI">
+    </button>
+    <div>
+        <div>
+            <span class="number">8.</span>
+            <a class="title" href="8/">【洛天依/中东】我还年轻 我还年轻</a>
+        </div>
+        <div class="artists">洛天依, 十字_zwd</div>
+        <div class="waveform">
+    <svg data-peaks="CKHKHKKGLLKFHJDNLJNROJMJJMLMFOJJPTJMOIJMKUYSUXaWVUUUUVUagijikihbgfdeabWcXebbgbdVZaccdWXdgeehVabbceaXXjhgfeZZZmmdhfovkiimfololiimtfllgjhocgjZj3el4ognyoxbtrfbmlildpprlgqvopoo0mlppmqlqzttvtpnmsqmk082l3733wlebgouihqulkkynnetqofkadMSSMOQURSdfjkokkohonldlenqihjxiloglhmhiohiqtgligkjsemnljmsgmkhifkjqlkjonfqmgejikkeqgwgihTRHBA">
+    <path class="seek"/>
+    <path class="playback"/>
+    <path class="base"/>
+</svg>
+
+    <input aria-label="Playback position" aria-valuetext="" autocomplete="off" max="348.70856" min="0" step="any" type="range" value="0">
+    <div class="decoration"></div>
+</div>
+
+        <audio controls preload="none">
+            <source src="8/opus-96/1zOLNqkR3wU/08%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E4%B8%9C%E3%80%91%E6%88%91%E8%BF%98%E5%B9%B4%E8%BD%BB%20%E6%88%91%E8%BF%98%E5%B9%B4%E8%BD%BB.opus" type="audio/ogg; codecs=opus">
+<source src="8/mp3-v5/WjX6PNtWt9A/08%20%E6%B4%9B%E5%A4%A9%E4%BE%9D%2C%20%E5%8D%81%E5%AD%97_zwd%20-%20%E3%80%90%E6%B4%9B%E5%A4%A9%E4%BE%9D%E4%B8%AD%E4%B8%9C%E3%80%91%E6%88%91%E8%BF%98%E5%B9%B4%E8%BD%BB%20%E6%88%91%E8%BF%98%E5%B9%B4%E8%BD%BB.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div>
+         <span class="time">5:48</span>
     </div>
 </div>
 
