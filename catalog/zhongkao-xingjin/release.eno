@@ -1,0 +1,17 @@
+title: 中考行进
+permalink: zhongkao-xingjin
+date: 2026-05-21
+release_artist: 水澄Mizu
+cover:
+description = 紫红色手绘眼睛与竖排“中考行进”标题
+file = cover.png
+release_download_access: disabled
+track_download_access: disabled
+track_numbering: arabic-dotted
+
+theme:
+accent_hue = 326
+accent_chroma = 78
+accent_brightening = 70
+round_corners = enabled
+waveforms = absolute
