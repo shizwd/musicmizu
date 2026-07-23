@@ -10,6 +10,7 @@ release_extras: separate
 site_assets:
 - custom.css
 - custom.js
+- library.json
 - robots.txt
 - assets/mio-avatar.png
 - assets/mio-standee.png

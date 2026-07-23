@@ -1,0 +1,60 @@
+{
+    "releases":  [
+                     {
+                         "slug":  "shitige",
+                         "title":  "史替え歌",
+                         "artist":  "十字_zwd\u0026里森堡贸易中心",
+                         "cover":  "shitige/cover_160.jpg",
+                         "trackCount":  8,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "wuyun-diandangji",
+                         "title":  "乌云典当记",
+                         "artist":  "万能青年旅店",
+                         "cover":  "wuyun-diandangji/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "zhongkao-xingjin",
+                         "title":  "中考行进",
+                         "artist":  "水澄Mizu\u0026含哉",
+                         "cover":  "zhongkao-xingjin/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "projectmili",
+                         "title":  "ProjectMili",
+                         "artist":  "Mili",
+                         "cover":  "projectmili/cover_160.jpg",
+                         "trackCount":  13,
+                         "trackCoverCount":  13
+                     },
+                     {
+                         "slug":  "hanzai-voice",
+                         "title":  "含哉の美妙嗓音",
+                         "artist":  "含哉",
+                         "cover":  "hanzai-voice/cover_160.jpg",
+                         "trackCount":  2,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "kusanagi-nene-wonderlands-showtime",
+                         "title":  "草薙宁宁（Wonderlands✕Showtime）",
+                         "artist":  "草薙宁宁（Wonderlands✕Showtime）",
+                         "cover":  "kusanagi-nene-wonderlands-showtime/cover_160.jpg",
+                         "trackCount":  25,
+                         "trackCoverCount":  25
+                     },
+                     {
+                         "slug":  "noteblock",
+                         "title":  "Noteblock",
+                         "artist":  "Music Mizu",
+                         "cover":  "noteblock/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
+                     }
+                 ]
+}

@@ -14,16 +14,8 @@
     volume: svgIcon('<path d="M4 10v4h3l4 3V7l-4 3zm10.5-.5a4 4 0 0 1 0 5m2-7a7 7 0 0 1 0 9"/>')
   };
 
-  const albumArtists = {
-    "projectmili": "Mili",
-    "noteblock": "Music Mizu",
-    "kusanagi-nene-wonderlands-showtime": "草薙宁宁 · Wonderlands×Showtime"
-  };
-
-  const trackCoverCounts = {
-    "projectmili": 13,
-    "kusanagi-nene-wonderlands-showtime": 25
-  };
+  const albumArtists = {};
+  const trackCoverCounts = {};
 
   const originalLogo = document.querySelector("#logo");
   const siteRoot = new URL(originalLogo ? originalLogo.getAttribute("href") : "./", window.location.href);
@@ -89,13 +81,49 @@
       <div class="mizu-nav-label">音乐库</div>
       <nav class="mizu-nav mizu-nav-library">
         <a href="${siteRoot.href}" data-nav="home"><span class="mizu-nav-icon">${icons.library}</span><span>全部专辑</span></a>
-        <a href="${pathFor("projectmili")}"><img class="mizu-nav-cover" src="${assetFor("projectmili/cover_160.jpg")}" alt=""><span>ProjectMili</span></a>
-        <a href="${pathFor("kusanagi-nene-wonderlands-showtime")}"><img class="mizu-nav-cover" src="${assetFor("kusanagi-nene-wonderlands-showtime/cover_160.jpg")}" alt=""><span>草薙宁宁</span></a>
-        <a href="${pathFor("noteblock")}"><img class="mizu-nav-cover" src="${assetFor("noteblock/cover_160.jpg")}" alt=""><span>Noteblock</span></a>
+        <span data-library-anchor hidden></span>
         <button class="mizu-mobile-search-button" type="button" data-mobile-search aria-label="搜索当前页面" aria-controls="mizu-search-panel" aria-expanded="false"><span class="mizu-nav-icon">${icons.search}</span><span>搜索</span></button>
       </nav>
     `;
     document.body.insertBefore(aside, document.body.firstChild);
+  }
+
+  async function loadLibrary() {
+    const response = await fetch(assetFor("library.json"), {
+      headers: { "X-Requested-With": "MusicMizu" },
+      cache: "no-cache"
+    });
+    if (!response.ok) throw new Error(`Library index HTTP ${response.status}`);
+    const library = await response.json();
+    const anchor = document.querySelector("[data-library-anchor]");
+    const nav = anchor?.parentElement;
+    if (!anchor || !nav || !Array.isArray(library.releases)) return;
+
+    nav.querySelectorAll("a[data-release]").forEach(link => link.remove());
+    library.releases.forEach(release => {
+      if (!release?.slug || !release?.title) return;
+      albumArtists[release.slug] = release.artist || "Music Mizu";
+      if (release.trackCoverCount) trackCoverCounts[release.slug] = release.trackCoverCount;
+      const link = document.createElement("a");
+      link.href = pathFor(release.slug);
+      link.dataset.release = release.slug;
+      const cover = document.createElement("img");
+      cover.className = "mizu-nav-cover";
+      cover.src = assetFor(release.cover || `${release.slug}/cover_160.jpg`);
+      cover.alt = "";
+      const label = document.createElement("span");
+      label.textContent = release.title;
+      link.append(cover, label);
+      nav.insertBefore(link, anchor);
+    });
+
+    document.querySelectorAll("#content .release").forEach(release => {
+      const link = release.querySelector("a[href]");
+      const slug = link ? new URL(link.href).pathname.split("/").filter(Boolean).pop() : "";
+      const artist = release.querySelector(".mizu-release-artist");
+      if (artist && slug) artist.textContent = albumArtists[slug] || "Music Mizu";
+    });
+    updateActiveNavigation();
   }
 
   function createToolbar() {
@@ -629,4 +657,5 @@
   updateRangeFill(document.querySelector('[data-player="volume"]'), 0.9);
   bindEvents();
   enhancePage();
+  loadLibrary().catch(error => console.warn("Unable to load dynamic library index", error));
 })();

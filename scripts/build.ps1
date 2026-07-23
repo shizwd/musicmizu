@@ -1,16 +1,25 @@
+param(
+    [string]$FaircampPath = ''
+)
 $ErrorActionPreference = 'Stop'
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $localFaircamp = Join-Path $projectRoot '.tools\faircamp\faircamp.exe'
 $faircamp = Get-Command faircamp -ErrorAction SilentlyContinue
 
-if (Test-Path $localFaircamp) {
+if ($FaircampPath) {
+    $faircampExecutable = $FaircampPath
+} elseif (Test-Path $localFaircamp) {
     $faircampExecutable = $localFaircamp
 } elseif ($faircamp) {
     $faircampExecutable = $faircamp.Source
 } else {
     throw 'Faircamp 1.7+ is required. Install it from https://faircamp.org/'
 }
+
+& (Join-Path $PSScriptRoot 'generate-library.ps1') `
+    -CatalogDir (Join-Path $projectRoot 'catalog') `
+    -OutputPath (Join-Path $projectRoot 'catalog\library.json')
 
 & $faircampExecutable `
     --catalog-dir (Join-Path $projectRoot 'catalog') `
