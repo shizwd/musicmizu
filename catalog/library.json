@@ -17,14 +17,6 @@
                          "trackCoverCount":  0
                      },
                      {
-                         "slug":  "zhongkao-xingjin",
-                         "title":  "中考行进",
-                         "artist":  "水澄Mizu\u0026含哉",
-                         "cover":  "zhongkao-xingjin/cover_160.jpg",
-                         "trackCount":  1,
-                         "trackCoverCount":  0
-                     },
-                     {
                          "slug":  "yinyue-gongchang-ii-shoudu",
                          "title":  "音樂工廠Ⅱ～首都",
                          "artist":  "群星",
@@ -33,12 +25,20 @@
                          "trackCoverCount":  0
                      },
                      {
-                         "slug":  "projectmili",
-                         "title":  "ProjectMili",
-                         "artist":  "Mili",
-                         "cover":  "projectmili/cover_160.jpg",
-                         "trackCount":  13,
-                         "trackCoverCount":  13
+                         "slug":  "zhongkao-xingjin",
+                         "title":  "中考行进",
+                         "artist":  "水澄Mizu\u0026含哉",
+                         "cover":  "zhongkao-xingjin/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "yoasobi",
+                         "title":  "YOASOBI",
+                         "artist":  "YOASOBI",
+                         "cover":  "yoasobi/cover_160.jpg",
+                         "trackCount":  25,
+                         "trackCoverCount":  25
                      },
                      {
                          "slug":  "huanghou-dadao-dong",
@@ -57,20 +57,28 @@
                          "trackCoverCount":  0
                      },
                      {
-                         "slug":  "noteblock",
-                         "title":  "Noteblock",
-                         "artist":  "Music Mizu",
-                         "cover":  "noteblock/cover_160.jpg",
-                         "trackCount":  1,
-                         "trackCoverCount":  0
-                     },
-                     {
                          "slug":  "kusanagi-nene-wonderlands-showtime",
                          "title":  "草薙宁宁（Wonderlands✕Showtime）",
                          "artist":  "草薙宁宁（Wonderlands✕Showtime）",
                          "cover":  "kusanagi-nene-wonderlands-showtime/cover_160.jpg",
                          "trackCount":  25,
                          "trackCoverCount":  25
+                     },
+                     {
+                         "slug":  "projectmili",
+                         "title":  "ProjectMili",
+                         "artist":  "Mili",
+                         "cover":  "projectmili/cover_160.jpg",
+                         "trackCount":  13,
+                         "trackCoverCount":  13
+                     },
+                     {
+                         "slug":  "noteblock",
+                         "title":  "Noteblock",
+                         "artist":  "Music Mizu",
+                         "cover":  "noteblock/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
                      }
                  ]
 }

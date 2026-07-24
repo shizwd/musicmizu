@@ -1,0 +1,17 @@
+title: YOASOBI
+permalink: yoasobi
+release_artist: YOASOBI
+release_download_access: disabled
+track_download_access: disabled
+track_numbering: arabic-dotted
+
+-- synopsis
+YOASOBI 作品合集，共 25 首。
+-- synopsis
+
+theme:
+accent_hue = 286
+accent_chroma = 80
+accent_brightening = 72
+round_corners = enabled
+waveforms = absolute
