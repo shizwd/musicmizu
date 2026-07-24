@@ -1,10 +1,10 @@
 {
     "releases":  [
                      {
-                         "slug":  "wuyun-diandangji",
-                         "title":  "乌云典当记",
-                         "artist":  "万能青年旅店",
-                         "cover":  "wuyun-diandangji/cover_160.jpg",
+                         "slug":  "tongtong",
+                         "title":  "嗵嗵",
+                         "artist":  "DOUDOU",
+                         "cover":  "tongtong/cover_160.jpg",
                          "trackCount":  1,
                          "trackCoverCount":  0
                      },
@@ -17,11 +17,19 @@
                          "trackCoverCount":  0
                      },
                      {
-                         "slug":  "yinyue-gongchang-ii-shoudu",
-                         "title":  "音樂工廠Ⅱ～首都",
-                         "artist":  "群星",
-                         "cover":  "yinyue-gongchang-ii-shoudu/cover_160.jpg",
+                         "slug":  "projectmili",
+                         "title":  "ProjectMili",
+                         "artist":  "Mili",
+                         "cover":  "projectmili/cover_160.jpg",
                          "trackCount":  13,
+                         "trackCoverCount":  13
+                     },
+                     {
+                         "slug":  "wuyun-diandangji",
+                         "title":  "乌云典当记",
+                         "artist":  "万能青年旅店",
+                         "cover":  "wuyun-diandangji/cover_160.jpg",
+                         "trackCount":  1,
                          "trackCoverCount":  0
                      },
                      {
@@ -41,6 +49,14 @@
                          "trackCoverCount":  25
                      },
                      {
+                         "slug":  "yinyue-gongchang-ii-shoudu",
+                         "title":  "音樂工廠Ⅱ～首都",
+                         "artist":  "群星",
+                         "cover":  "yinyue-gongchang-ii-shoudu/cover_160.jpg",
+                         "trackCount":  13,
+                         "trackCoverCount":  0
+                     },
+                     {
                          "slug":  "huanghou-dadao-dong",
                          "title":  "皇后大道东",
                          "artist":  "群星",
@@ -57,6 +73,14 @@
                          "trackCoverCount":  0
                      },
                      {
+                         "slug":  "airen-tongzhi",
+                         "title":  "爱人同志",
+                         "artist":  "罗大佑",
+                         "cover":  "airen-tongzhi/cover_160.jpg",
+                         "trackCount":  10,
+                         "trackCoverCount":  0
+                     },
+                     {
                          "slug":  "kusanagi-nene-wonderlands-showtime",
                          "title":  "草薙宁宁（Wonderlands✕Showtime）",
                          "artist":  "草薙宁宁（Wonderlands✕Showtime）",
@@ -65,19 +89,27 @@
                          "trackCoverCount":  25
                      },
                      {
-                         "slug":  "projectmili",
-                         "title":  "ProjectMili",
-                         "artist":  "Mili",
-                         "cover":  "projectmili/cover_160.jpg",
-                         "trackCount":  13,
-                         "trackCoverCount":  13
-                     },
-                     {
                          "slug":  "noteblock",
                          "title":  "Noteblock",
                          "artist":  "Music Mizu",
                          "cover":  "noteblock/cover_160.jpg",
                          "trackCount":  1,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "meilidao",
+                         "title":  "美丽岛",
+                         "artist":  "罗大佑",
+                         "cover":  "meilidao/cover_160.jpg",
+                         "trackCount":  16,
+                         "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "lianqu-2000",
+                         "title":  "恋曲2000",
+                         "artist":  "罗大佑",
+                         "cover":  "lianqu-2000/cover_160.jpg",
+                         "trackCount":  10,
                          "trackCoverCount":  0
                      }
                  ]
