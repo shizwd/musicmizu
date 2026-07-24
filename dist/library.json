@@ -57,6 +57,14 @@
                          "trackCoverCount":  0
                      },
                      {
+                         "slug":  "noteblock",
+                         "title":  "Noteblock",
+                         "artist":  "Music Mizu",
+                         "cover":  "noteblock/cover_160.jpg",
+                         "trackCount":  1,
+                         "trackCoverCount":  0
+                     },
+                     {
                          "slug":  "huanghou-dadao-dong",
                          "title":  "皇后大道东",
                          "artist":  "群星",
@@ -81,19 +89,11 @@
                          "trackCoverCount":  0
                      },
                      {
-                         "slug":  "kusanagi-nene-wonderlands-showtime",
-                         "title":  "草薙宁宁（Wonderlands✕Showtime）",
-                         "artist":  "草薙宁宁（Wonderlands✕Showtime）",
-                         "cover":  "kusanagi-nene-wonderlands-showtime/cover_160.jpg",
-                         "trackCount":  25,
-                         "trackCoverCount":  25
-                     },
-                     {
-                         "slug":  "noteblock",
-                         "title":  "Noteblock",
-                         "artist":  "Music Mizu",
-                         "cover":  "noteblock/cover_160.jpg",
-                         "trackCount":  1,
+                         "slug":  "iyowa",
+                         "title":  "いよわ",
+                         "artist":  "いよわ",
+                         "cover":  "iyowa/cover_160.jpg",
+                         "trackCount":  18,
                          "trackCoverCount":  0
                      },
                      {
@@ -111,6 +111,14 @@
                          "cover":  "lianqu-2000/cover_160.jpg",
                          "trackCount":  10,
                          "trackCoverCount":  0
+                     },
+                     {
+                         "slug":  "kusanagi-nene-wonderlands-showtime",
+                         "title":  "草薙宁宁（Wonderlands✕Showtime）",
+                         "artist":  "草薙宁宁（Wonderlands✕Showtime）",
+                         "cover":  "kusanagi-nene-wonderlands-showtime/cover_160.jpg",
+                         "trackCount":  25,
+                         "trackCoverCount":  25
                      }
                  ]
 }

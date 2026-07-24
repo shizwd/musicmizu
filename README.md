@@ -78,6 +78,7 @@ catalog/                  Faircamp 音乐与站点配置
   airen-tongzhi/          爱人同志
   hanzai-voice/           含哉の美妙嗓音
   huanghou-dadao-dong/    皇后大道东
+  iyowa/                   いよわ
   kusanagi-nene-.../      草薙宁宁（Wonderlands✕Showtime）
   lianqu-2000/            恋曲2000
   meilidao/               美丽岛
