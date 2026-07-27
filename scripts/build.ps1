@@ -32,6 +32,20 @@ if ($LASTEXITCODE -ne 0) {
 # Music Mizu owns playback and persists its audio element across page changes.
 # Remove Faircamp's second player runtime to avoid duplicate observers and controls.
 $buildDir = Join-Path $projectRoot 'dist'
+$bundledFfmpeg = Join-Path (Split-Path -Parent $faircampExecutable) 'ffmpeg.exe'
+$ffmpeg = Get-Command ffmpeg -ErrorAction SilentlyContinue
+if (Test-Path -LiteralPath $bundledFfmpeg) {
+    $ffmpegExecutable = $bundledFfmpeg
+} elseif ($ffmpeg) {
+    $ffmpegExecutable = $ffmpeg.Source
+} else {
+    throw 'FFmpeg is required to generate the playback quality metadata.'
+}
+
+& (Join-Path $PSScriptRoot 'generate-audio-metadata.ps1') `
+    -BuildDir $buildDir `
+    -FfmpegPath $ffmpegExecutable
+
 $trackCoverSource = Join-Path $projectRoot 'assets\track-covers'
 $trackCoverDestination = Join-Path $buildDir 'track-covers'
 if (Test-Path $trackCoverSource) {

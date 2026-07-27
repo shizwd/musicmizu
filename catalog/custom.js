@@ -30,6 +30,8 @@
   let currentTrack = null;
   let navigating = false;
   let toastTimer = 0;
+  let audioMetadataPromise = null;
+  let audioInfoRequest = 0;
 
   const pathFor = slug => new URL(slug ? `${slug}/` : "./", siteRoot).href;
   const assetFor = name => new URL(name, siteRoot).href;
@@ -142,6 +144,10 @@
             <img class="mizu-player-art" alt="">
             <div class="mizu-player-center">
               <div class="mizu-player-meta"><strong>选择一首歌曲</strong><span>Music Mizu</span></div>
+              <div class="mizu-audio-info" data-audio-info aria-live="polite">
+                <span class="mizu-quality-badge">播放参数</span>
+                <span data-audio-specs>选择歌曲后显示</span>
+              </div>
               <div class="mizu-progress-row">
                 <time data-time="current">0:00</time>
                 <input class="mizu-range" data-player="progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="播放进度" aria-valuetext="尚未选择歌曲" disabled>
@@ -189,6 +195,107 @@
     if (!input) return;
     const ratio = maximum > 0 ? Math.min(1, Math.max(0, value / maximum)) : 0;
     input.style.setProperty("--mizu-range-value", `${ratio * 100}%`);
+  }
+
+  function loadAudioMetadata() {
+    if (!audioMetadataPromise) {
+      audioMetadataPromise = fetch(assetFor("audio-metadata.json"), {
+        headers: { "X-Requested-With": "MusicMizu" },
+        cache: "no-cache"
+      }).then(response => {
+        if (!response.ok) throw new Error(`Audio metadata HTTP ${response.status}`);
+        return response.json();
+      }).then(manifest => manifest?.streams || {});
+    }
+    return audioMetadataPromise;
+  }
+
+  function audioMetadataKey(url) {
+    const pathname = new URL(url, window.location.href).pathname;
+    const relativePath = pathname.toLowerCase().startsWith(rootPath.toLowerCase())
+      ? pathname.slice(rootPath.length)
+      : pathname.replace(/^\/+/, "");
+    try {
+      return decodeURIComponent(relativePath);
+    } catch (_) {
+      return relativePath;
+    }
+  }
+
+  function inferredAudioMetadata(track) {
+    const path = new URL(track.src, window.location.href).pathname.toLowerCase();
+    if (path.includes("/opus-96/") || path.endsWith(".opus")) {
+      return {
+        format: "Opus",
+        profile: "96 kbps target",
+        quality: "lossy",
+        sampleRateHz: 48000,
+        bitDepth: null,
+        bitrateKbps: null,
+        sizeBytes: null
+      };
+    }
+    return {
+      format: "MP3",
+      profile: path.includes("/mp3-v5/") ? "V5 VBR" : "",
+      quality: "lossy",
+      sampleRateHz: null,
+      bitDepth: null,
+      bitrateKbps: null,
+      sizeBytes: null
+    };
+  }
+
+  function formatFileSize(bytes) {
+    if (!Number.isFinite(bytes) || bytes <= 0) return "大小未知";
+    if (bytes >= 1000 * 1000) return `${(bytes / (1000 * 1000)).toFixed(bytes >= 10 * 1000 * 1000 ? 1 : 2)} MB`;
+    return `${Math.round(bytes / 1000)} KB`;
+  }
+
+  function formatSampleRate(sampleRateHz) {
+    if (!Number.isFinite(sampleRateHz) || sampleRateHz <= 0) return "采样率未知";
+    const kiloHertz = sampleRateHz / 1000;
+    return `${Number.isInteger(kiloHertz) ? kiloHertz : kiloHertz.toFixed(1)} kHz`;
+  }
+
+  function renderAudioInfo(metadata) {
+    const container = document.querySelector("[data-audio-info]");
+    if (!container) return;
+    const badge = container.querySelector(".mizu-quality-badge");
+    const details = container.querySelector("[data-audio-specs]");
+    const format = [metadata.format, metadata.profile].filter(Boolean).join(" ");
+    const bitDepth = Number.isFinite(metadata.bitDepth) ? `${metadata.bitDepth}-bit` : "位深 N/A";
+    const bitrate = Number.isFinite(metadata.bitrateKbps) ? `${metadata.bitrateKbps} kbps` : "比特率未知";
+    const size = formatFileSize(metadata.sizeBytes);
+    const description = `${format} · ${formatSampleRate(metadata.sampleRateHz)} · ${bitDepth} · ${bitrate} · ${size}`;
+
+    badge.textContent = metadata.quality === "lossless" ? "无损" : "有损";
+    details.textContent = description;
+    container.title = metadata.quality === "lossless"
+      ? description
+      : `${description}；压缩音频码流没有像 PCM/FLAC 那样的固定位深`;
+  }
+
+  function updateAudioInfo(track) {
+    const container = document.querySelector("[data-audio-info]");
+    if (!container || !track?.src) return;
+    if (container.dataset.src === track.src) return;
+
+    container.dataset.src = track.src;
+    container.querySelector(".mizu-quality-badge").textContent = "读取中";
+    container.querySelector("[data-audio-specs]").textContent = "正在读取实际播放文件参数…";
+    const request = ++audioInfoRequest;
+    const fallback = inferredAudioMetadata(track);
+
+    loadAudioMetadata()
+      .then(streams => streams[audioMetadataKey(track.src)] || fallback)
+      .catch(error => {
+        console.warn("Unable to load playback metadata", error);
+        return fallback;
+      })
+      .then(metadata => {
+        if (request === audioInfoRequest && currentTrack?.src === track.src) renderAudioInfo(metadata);
+      });
   }
 
   function trackFromElement(element) {
@@ -250,6 +357,7 @@
       previous.disabled = false;
       next.disabled = false;
       progress.disabled = false;
+      updateAudioInfo(currentTrack);
     }
 
     playButton.innerHTML = audio && !audio.paused ? icons.pause : icons.play;
