@@ -53,12 +53,27 @@
       const trackNumber = detailTrackNumber || listedNumber || index + 1;
       if (trackNumber < 1 || trackNumber > coverCount) return;
 
+      const coverSource = assetFor(`track-covers/${albumSlug}/${String(trackNumber).padStart(2, "0")}.jpg`);
       const cover = track.querySelector(".track_playback img");
-      if (!cover) return;
-      cover.removeAttribute("srcset");
-      cover.src = assetFor(`track-covers/${albumSlug}/${String(trackNumber).padStart(2, "0")}.jpg`);
-      cover.alt = "";
-      cover.setAttribute("aria-hidden", "true");
+      if (cover) {
+        cover.removeAttribute("srcset");
+        cover.src = coverSource;
+        cover.alt = "";
+        cover.setAttribute("aria-hidden", "true");
+      }
+
+      if (detailTrackNumber === trackNumber) {
+        const title = track.querySelector(".title")?.textContent.trim() || "Track";
+        const detailCover = document.querySelector(".page_split .cover");
+        const detailCoverLink = detailCover?.querySelector("a.image");
+        if (detailCoverLink) detailCoverLink.href = coverSource;
+        detailCover?.querySelectorAll("img").forEach(image => {
+          image.removeAttribute("srcset");
+          image.removeAttribute("sizes");
+          image.src = coverSource;
+          image.alt = `${title} cover artwork`;
+        });
+      }
     });
   }
 
@@ -125,6 +140,7 @@
       const artist = release.querySelector(".mizu-release-artist");
       if (artist && slug) artist.textContent = albumArtists[slug] || "Music Mizu";
     });
+    applyTrackCovers(Array.from(document.querySelectorAll("#content .track")));
     updateActiveNavigation();
   }
 
