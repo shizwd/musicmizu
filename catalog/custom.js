@@ -77,23 +77,14 @@
     });
   }
 
-  function createMascotLayer() {
-    const standee = document.createElement("img");
-    standee.className = "mizu-mascot-standee";
-    standee.src = assetFor("mio-standee.png");
-    standee.alt = "";
-    standee.setAttribute("aria-hidden", "true");
-    document.body.appendChild(standee);
-  }
-
   function createSidebar() {
     const aside = document.createElement("aside");
     aside.className = "mizu-sidebar";
     aside.setAttribute("aria-label", "资料库导航");
     aside.innerHTML = `
       <a class="mizu-brand" href="${siteRoot.href}">
-        <img class="mizu-brand-avatar" src="${assetFor("mio-avatar.png")}" alt="">
-        <span><strong>Music Mizu</strong><small>澪音的潮汐档案</small></span>
+        <span class="mizu-brand-mark">${icons.library}</span>
+        <span>Music Mizu</span>
       </a>
       <div class="mizu-nav-label">音乐库</div>
       <nav class="mizu-nav mizu-nav-library">
@@ -526,25 +517,6 @@
         release.appendChild(meta);
       });
 
-      const intro = document.querySelector("#content .page_more");
-      if (intro && !intro.querySelector(".mizu-mascot-gallery")) {
-        intro.querySelector("h1")?.remove();
-        const gallery = document.createElement("section");
-        gallery.className = "mizu-mascot-gallery";
-        gallery.setAttribute("aria-labelledby", "mizu-mascot-gallery-title");
-        gallery.innerHTML = `
-          <div class="mizu-gallery-heading">
-            <div><span>潮汐日志</span><h3 id="mizu-mascot-gallery-title">澪音的三个片段</h3></div>
-            <a href="${assetFor("mio-character-sheet.png")}" target="_blank" rel="noopener">查看完整设定图 ↗</a>
-          </div>
-          <div class="mizu-gallery-grid">
-            <figure><img src="${assetFor("mio-illustration-archive.png")}" alt="澪音在潮汐档案室整理音乐记忆" loading="lazy"><figcaption><strong>潮汐档案</strong><span>把旋律收进不会蒸发的水层。</span></figcaption></figure>
-            <figure><img src="${assetFor("mio-illustration-stage.png")}" alt="澪音用水波为舞台调音" loading="lazy"><figcaption><strong>舞台调音</strong><span>让每一道水波落在正确的拍点。</span></figcaption></figure>
-            <figure><img src="${assetFor("mio-illustration-echo.png")}" alt="澪音读取水球中的数字回声" loading="lazy"><figcaption><strong>数字回声</strong><span>红色节点连接散落的听歌记忆。</span></figcaption></figure>
-          </div>
-        `;
-        intro.appendChild(gallery);
-      }
     }
 
     document.querySelectorAll("#content .track_playback").forEach(button => button.setAttribute("tabindex", "0"));
@@ -775,7 +747,6 @@
   }
 
   absolutizeContent(document.querySelector("footer"), window.location.href);
-  createMascotLayer();
   createSidebar();
   createToolbar();
   updateRangeFill(document.querySelector('[data-player="volume"]'), 0.9);
